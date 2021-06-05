@@ -1,0 +1,8 @@
+{
+    "Base": true,
+    "ACL": true,
+    "Gallery": true,
+    "Notifications": true,
+    "Users": true,
+    "Frontend": true
+}
