@@ -4,5 +4,6 @@
     "Gallery": true,
     "Notifications": true,
     "Users": true,
-    "Frontend": true
+    "Frontend": true,
+    "Services": true
 }

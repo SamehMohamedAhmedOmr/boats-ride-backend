@@ -83,4 +83,26 @@ class MediaService
         Storage::put($path, $image->stream());
         return 'uploads' . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $imageName;
     }
+
+
+    public function generateThumbnailBas64($image_file, $folder)
+    {
+        $destinationPath =  'uploads' . DIRECTORY_SEPARATOR . $folder  . DIRECTORY_SEPARATOR . 'thumbnail';
+
+        $image_file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image_file));
+
+        $thumbnail_image_name = md5('thumb' . uniqid() . time()) . '.jpg';
+
+
+        $image = Image::make($image_file);
+
+        $image->resize(200, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->stream();
+
+        Storage::disk('public')->put($destinationPath . '/' . $thumbnail_image_name, $image);
+
+        return $thumbnail_image_name;
+    }
+
 }

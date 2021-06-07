@@ -34,14 +34,14 @@ class GetCurrentDoctor
      */
     public function handle(Request $request, Closure $next)
     {
-        $doctor_id = null;
+        // $doctor_id = null;
 
-        if (Auth::id()){
-            $doctor = Doctors::where('user_id', Auth::id())->first();
-            $doctor_id = $doctor ? $doctor->id : null;
-        }
+        // if (Auth::id()){
+        //     $doctor = Doctors::where('user_id', Auth::id())->first();
+        //     $doctor_id = $doctor ? $doctor->id : null;
+        // }
 
-        $this->session->put('current_doctor', $doctor_id);
+        // $this->session->put('current_doctor', $doctor_id);
 
         return $next($request);
     }
