@@ -14,7 +14,8 @@ class Service extends Model
     public $translatable = ['name','description'];
     protected $casts = ['name' => 'json','description' => 'json'];   
 
-    public function getImageAttribute($value){
-        return MediaService::constructUrl($value);
+
+    public function getImageUrlAttribute(){
+        return MediaService::constructUrl($this->image);
     }
 }

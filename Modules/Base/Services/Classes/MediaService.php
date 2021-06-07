@@ -102,7 +102,7 @@ class MediaService
 
         Storage::disk('public')->put($destinationPath . '/' . $thumbnail_image_name, $image);
 
-        return $thumbnail_image_name;
+        return $destinationPath . '/' . $thumbnail_image_name;
     }
 
 }

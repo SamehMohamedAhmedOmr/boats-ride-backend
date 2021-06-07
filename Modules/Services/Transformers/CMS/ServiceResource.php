@@ -22,7 +22,8 @@ class ServiceResource extends JsonResource
             'price_model'=>$this->price_model,
             'minimum_hours_booking'=>$this->minimum_hours_booking,
             'max_quantity'=>$this->max_quantity,
-            'image'=>$this->image
+            'image'=>$this->image_url,
+            'thumbnail'=>$this->thumbnail
         ];
     }
 }

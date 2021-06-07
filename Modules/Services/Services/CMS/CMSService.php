@@ -33,7 +33,7 @@ class CMSService extends LaravelServiceClass
             $model = parent::all($this->repository, true);
         }
 
-        $model = BannerResource::collection($model);
+        $model = ServiceResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
     }
 
@@ -80,8 +80,11 @@ class CMSService extends LaravelServiceClass
 
         $data = $request->all();
         if ($image){
+            $old_model = $this->repository->get($id);
             $data['image'] = $image;
             $data['thumbnail'] = $thumbnail;
+
+            $this->deleteServiceImages($old_model);
         }
 
         $model = $this->repository->update($id, $data);
@@ -95,6 +98,19 @@ class CMSService extends LaravelServiceClass
     {
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
+    }
+
+    protected function deleteServiceImages($old_model)
+    {
+        if(\Storage::disk('public')->exists($old_model->image))
+        {
+            $this->mediaService->deleteImage('public/'.$old_model->image);
+        }
+
+        if(\Storage::disk('public')->exists($old_model->thumbnail))
+        {
+            $this->mediaService->deleteImage('public/'.$old_model->thumbnail);
+        }
     }
 
 }
