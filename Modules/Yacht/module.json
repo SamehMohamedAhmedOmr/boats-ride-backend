@@ -1,0 +1,13 @@
+{
+    "name": "Yacht",
+    "alias": "yacht",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Yacht\\Providers\\YachtServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
