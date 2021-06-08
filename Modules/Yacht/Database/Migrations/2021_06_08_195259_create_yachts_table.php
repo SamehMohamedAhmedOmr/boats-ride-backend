@@ -21,6 +21,9 @@ class CreateYachtsTable extends Migration
         Schema::create('yachts', function (Blueprint $table) {
             $table->id();
             $table->json('name');
+            $table->json('what_expect_description');
+            $table->json('what_is_included');
+            $table->json('facilities');
             $table->enum('type',YachtTypeEnum::values);
             $table->enum('status',YachtStatusEnum::values);
             $table->string('code');
@@ -35,6 +38,7 @@ class CreateYachtsTable extends Migration
             $table->double('yacht_special_price')->default(0);
             $table->unsignedInteger('minimum_hours_booking');
             $table->boolean('apply_vat');
+            $table->string('manufacturer');
             $table->unsignedInteger('cruising_speed');
             $table->unsignedInteger('max_speed');
             $table->unsignedInteger('horse_Power');
@@ -43,23 +47,23 @@ class CreateYachtsTable extends Migration
             $table->enum('hull_type',HullTypeEnum::values());
             $table->enum('engine_type',EngineTypeEnum::values());
             $table->unsignedInteger('beam');
-            $table->boolean('water_slider');
-            $table->boolean('safety_equipment');
-            $table->boolean('soft_drinks_refreshments');
-            $table->boolean('swimming_equipment');
-            $table->boolean('ice_tea_water');
-            $table->boolean('DVD_player');
-            $table->boolean('satellite_system');
-            $table->boolean('red_carpet_on_arrival');
-            $table->boolean('spacious_saloon');
-            $table->boolean('BBQ_grill_equipment');
-            $table->boolean('fresh_towels');
-            $table->boolean('yacht_slippers');
-            $table->boolean('bathroom_amenities');
-            $table->boolean('under_water_light');
-            $table->boolean('LED_screen_tv');
-            $table->boolean('sunbathing_on_the_foredeck');
-            $table->boolean('fishing_equipment');
+            $table->boolean('water_slider')->default(0);
+            $table->boolean('safety_equipment')->default(0);
+            $table->boolean('soft_drinks_refreshments')->default(0);
+            $table->boolean('swimming_equipment')->default(0);
+            $table->boolean('ice_tea_water')->default(0);
+            $table->boolean('DVD_player')->default(0);
+            $table->boolean('satellite_system')->default(0);
+            $table->boolean('red_carpet_on_arrival')->default(0);
+            $table->boolean('spacious_saloon')->default(0);
+            $table->boolean('BBQ_grill_equipment')->default(0);
+            $table->boolean('fresh_towels')->default(0);
+            $table->boolean('yacht_slippers')->default(0);
+            $table->boolean('bathroom_amenities')->default(0);
+            $table->boolean('under_water_light')->default(0);
+            $table->boolean('LED_screen_tv')->default(0);
+            $table->boolean('sunbathing_on_the_foredeck')->default(0);
+            $table->boolean('fishing_equipment')->default(0);
             $table->timestamps();
         });
     }
