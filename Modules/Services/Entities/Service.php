@@ -11,8 +11,8 @@ class Service extends Model
 {
     use HasFactory,Translatable;
     protected $guarded = [];
-    public $translatable = ['name','description'];
-    protected $casts = ['name' => 'json','description' => 'json'];   
+    public $translatable = ['name','description','slug'];
+    protected $casts = ['name' => 'json','description' => 'json', 'slug' => 'json'];   
 
 
     public function getImageUrlAttribute(){

@@ -3,6 +3,7 @@
 namespace Modules\Services\Services\CMS;
 
 use Throwable;
+use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Base\ResponseShape\ApiResponse;
@@ -55,6 +56,9 @@ class CMSService extends LaravelServiceClass
             $data['image'] = $image;
             $data['thumbnail'] = $thumbnail;
 
+            $data['slug'] = ['en'=>Str::slug($data['name']['en']) , 
+                             'ar'=>Str::slug($data['name']['ar'],'-',null)];
+            
             $model =  $this->repository->create($data);
 
             $model = ServiceResource::make($model);

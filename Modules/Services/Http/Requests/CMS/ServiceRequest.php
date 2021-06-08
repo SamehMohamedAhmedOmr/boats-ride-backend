@@ -2,6 +2,8 @@
 
 namespace Modules\Services\Http\Requests\CMS;
 
+use Illuminate\Validation\Rule;
+use Modules\Services\Enums\PriceModelEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ServiceRequest extends FormRequest
@@ -15,16 +17,17 @@ class ServiceRequest extends FormRequest
     {
         return [
             'name'=>'required|array|size:2',
-            'name.en'=>'required|string|max:32000',
-            'name.ar'=>'required|string|max:32000',
+            'name.en'=>['required','string','max:65000', $this->isMethod('POST') ? Rule::unique('services','name->en') : Rule::unique('services','name->en')->ignore($this->route('service')) ],
+            'name.ar'=>['required','string','max:65000',$this->isMethod('POST') ? Rule::unique('services','name->ar') : Rule::unique('services','name->ar')->ignore($this->route('service'))],
             'description'=>'required|array|size:2',
-            'description.en'=>'required|string|max:32000',
-            'description.ar'=>'required|string|max:32000',
+            'description.en'=>'required|string|max:65000',
+            'description.ar'=>'required|string|max:65000',
             'price'=>'required|numeric|min:1',
-            'price_model'=>'required|integer',
+            'price_model'=>'required|integer|in:'.implode(',',PriceModelEnum::values()),
             'minimum_hours_booking'=>'required|integer|min:1',
             'max_quantity'=>'required|integer|min:1',
             'image'=>'required|string',
+            
         ];
     }
 

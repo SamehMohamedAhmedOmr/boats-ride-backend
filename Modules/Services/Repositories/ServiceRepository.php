@@ -31,6 +31,17 @@ class ServiceRepository extends LaravelRepositoryClass
     private function filtering($search_keys){
         $query = $this->model;
 
+        if($search_keys)
+        {
+            $query = $query->where(function ($q) use ($search_keys){
+
+                $local = Session::get('locale');
+
+                $q->orWhere('name->'.$local, 'LIKE', '%'.$search_keys.'%')
+                    ->orWhere('id', 'LIKE', '%'.$search_keys.'%');
+            });
+        }
+        
         return $query;
     }
 

@@ -17,6 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->json('name');
             $table->json('description');
+            $table->json('slug');
             $table->double('price');
             $table->tinyInteger('price_model');
             $table->unsignedInteger('minimum_hours_booking'); 

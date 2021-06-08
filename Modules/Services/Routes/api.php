@@ -21,3 +21,8 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::apiResource('services', 'ServicesController');
     });
 });
+
+
+Route::namespace('Frontend')->group(function () {
+    Route::apiResource('services',ServiceController::class)->only(['index','show']);
+});
