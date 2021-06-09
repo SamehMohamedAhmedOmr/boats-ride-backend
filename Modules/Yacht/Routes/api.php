@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/yacht', function (Request $request) {
-    return $request->user();
+
+Route::namespace('CMS')->prefix('admins')->group(function () {
+
+    Route::middleware('auth:api')->as('admins.')->group(function () {
+
+        Route::delete('yachts/delete/image/{id}', 'YachtController@deleteImage');
+        Route::apiResource('yachts', 'YachtController');
+    });
+});
+
+
+Route::namespace('Frontend')->group(function () {
+    Route::apiResource('yachts',YachtController::class)->only(['index','show']);
 });

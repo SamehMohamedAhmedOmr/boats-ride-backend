@@ -93,7 +93,7 @@ class MediaService
 
         $thumbnail_image_name = md5('thumb' . uniqid() . time()) . '.jpg';
 
-
+        
         $image = Image::make($image_file);
 
         $image->resize(200, null, function ($constraint) {
