@@ -73,4 +73,9 @@ class YachtController extends Controller
     {
         return $this->service->deleteImage($id);
     }
+
+    public function listEnums()
+    {
+        return $this->service->listEnums();
+    }
 }

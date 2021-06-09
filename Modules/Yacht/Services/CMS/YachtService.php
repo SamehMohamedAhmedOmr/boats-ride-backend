@@ -6,9 +6,15 @@ use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Modules\Yacht\Enums\FuelTypeEnum;
+use Modules\Yacht\Enums\HullTypeEnum;
+use Modules\Yacht\Enums\YachtTypeEnum;
+use Modules\Yacht\Enums\EngineTypeEnum;
+use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Base\Services\Classes\MediaService;
 use Modules\Yacht\Repositories\YachtRepository;
+use Modules\Yacht\Transformers\CMS\EnumResource;
 use Modules\Yacht\Transformers\CMS\YachtResource;
 use Modules\Frontend\Repositories\BannersRepository;
 use Modules\Services\Repositories\ServiceRepository;
@@ -16,6 +22,7 @@ use Modules\Yacht\Repositories\YachtImageRepository;
 use Modules\Frontend\Transformers\CMS\BannerResource;
 use Modules\Base\Services\Classes\LaravelServiceClass;
 use Modules\Services\Transformers\CMS\ServiceResource;
+use Modules\Yacht\Transformers\CMS\YachtEnumsResource;
 
 class YachtService extends LaravelServiceClass
 {
@@ -148,4 +155,42 @@ class YachtService extends LaravelServiceClass
         return ApiResponse::format(200, null, 'deleted!');
     }
 
+    public function listYachtTypes()
+    {
+        return YachtTypeEnum::translatedValues();
+    }
+
+    public function listYachtStatus()
+    {
+        return YachtStatusEnum::translatedValues();
+    }
+
+    public function listEngineTypes()
+    {
+        return EngineTypeEnum::translatedValues();
+    }
+
+    
+    public function listFuelTypes()
+    {
+        return FuelTypeEnum::translatedValues();
+    }
+
+    
+    public function listHullTypes()
+    {
+        return HullTypeEnum::translatedValues();
+    }
+
+    public function listEnums()
+    {
+        $enums = new YachtEnumsResource(
+                                    $this->listYachtTypes(),
+                                    $this->listYachtStatus(),
+                                    $this->listFuelTypes(),
+                                    $this->listHullTypes(),
+                                    $this->listEngineTypes()
+                                );
+        return ApiResponse::format(200, $enums, 'query successfully !');                                
+    }
 }

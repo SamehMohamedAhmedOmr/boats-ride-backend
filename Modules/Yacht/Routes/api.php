@@ -19,6 +19,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
     Route::middleware('auth:api')->as('admins.')->group(function () {
 
         Route::delete('yachts/delete/image/{id}', 'YachtController@deleteImage');
+        Route::get('yachts/list-enums', 'YachtController@listEnums');
         Route::apiResource('yachts', 'YachtController');
     });
 });

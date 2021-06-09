@@ -70,4 +70,15 @@ class BaseEnum
 
         return implode(',', $stringArr);
     }
+
+    public static function translatedValues()
+    {
+        $translated = [];
+
+        foreach (self::all() as $key => $value) {
+            $translated[] = (object) ['key'=>$key,'value'=>$value];
+        }
+
+        return $translated;
+    }
 }
