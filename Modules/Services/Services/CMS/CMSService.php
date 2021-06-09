@@ -91,6 +91,9 @@ class CMSService extends LaravelServiceClass
             $this->deleteServiceImages($old_model);
         }
 
+        $data['slug'] = ['en'=>Str::slug($data['name']['en']) , 
+                             'ar'=>Str::slug($data['name']['ar'],'-',null)];
+
         $model = $this->repository->update($id, $data);
 
 
