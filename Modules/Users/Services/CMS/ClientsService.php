@@ -71,13 +71,14 @@ class ClientsService extends LaravelServiceClass
             }
 
             $user =  $this->user_repo->create($user_data);
-
+            
             $this->clientRepository->create([
                 'user_id' => $user->id,
                 'phone' => $request->phone,
             ]);
-
+            
             $user = ClientsResource::make($user);
+            
             return ApiResponse::format(201, $user, 'Client Added!');
         });
 

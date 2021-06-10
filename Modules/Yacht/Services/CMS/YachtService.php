@@ -46,7 +46,7 @@ class YachtService extends LaravelServiceClass
             $model = parent::all($this->repository, true);
         }
 
-        $model = ServiceResource::collection($model);
+        $model = YachtResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
     }
 

@@ -12,3 +12,11 @@
 |
 */
 
+
+Route::namespace('CMS')->prefix('admins')->group(function () {
+
+    Route::middleware('auth:api')->as('admins.')->group(function () {
+        Route::apiResource('countries', 'CountryController')
+    });
+
+});

@@ -4,6 +4,7 @@ namespace Modules\Base\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Base\Database\Seeders\CountryTableSeeder;
 
 class BaseDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class BaseDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(CountryTableSeeder::class);
+
     }
 }

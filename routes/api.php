@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Base\Http\Controllers\CMS\CountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::prefix('admins')->group(function () {
+
+    Route::middleware('auth:api')->as('admins.')->group(function () {
+        Route::apiResource('countries', CountryController::class)->only(['index']);
+    });
+
+});

@@ -21,8 +21,14 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::delete('yachts/delete/image/{id}', 'YachtController@deleteImage');
         Route::get('yachts/list-enums', 'YachtController@listEnums');
         Route::apiResource('yachts', 'YachtController');
+        Route::get('trips/list-enums', 'tripController@listEnums');
+        Route::apiResource('trips', 'tripController');
+
     });
 });
+
+
+
 
 
 Route::namespace('Frontend')->group(function () {
