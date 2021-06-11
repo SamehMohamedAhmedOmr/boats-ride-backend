@@ -1,0 +1,13 @@
+{
+    "name": "WaterSports",
+    "alias": "watersports",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WaterSports\\Providers\\WaterSportsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
