@@ -38,9 +38,37 @@ class TripRepository extends LaravelRepositoryClass
 
                 $local = Session::get('locale');
 
-                $q->orWhere('name->'.$local, 'LIKE', '%'.$search_keys.'%')
-                    ->orWhere('id', 'LIKE', '%'.$search_keys.'%');
+                $q->orWhere('id', 'LIKE', '%'.$search_keys.'%');
             });
+        }
+
+        if(request()->has('email') || request()->has('phone'))
+        {
+            $query = $query->whereHas('client',function($query){
+                                    $query->when(request('phone'),function($q){
+                                        return $q->where('phone',request('phone'));
+                                    })->when(request('email'),function($q){
+                                        return $q->whereHas('user',function($q){
+                                            $q->where('email',request('email'));
+                                        });
+                                    });
+                                });
+        }
+
+        if(request()->has('status'))
+        {
+            $query = $query->where('status',(int) request('status'));
+        }
+        
+        
+        if(request()->has('from_date'))
+        {
+            $query = $query->where('start_date','>=',request('from_date'));
+        }
+        
+        if(request()->has('to_date'))
+        {
+            $query = $query->where('end_date','<=',request('to_date'));
         }
         
         return $query;
