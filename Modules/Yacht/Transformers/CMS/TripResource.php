@@ -3,6 +3,7 @@
 namespace Modules\Yacht\Transformers\CMS;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Yacht\Transformers\CMS\YachtResource;
 use Modules\Yacht\Transformers\CMS\TripClientResource;
 
 class TripResource extends JsonResource
@@ -33,7 +34,10 @@ class TripResource extends JsonResource
             'minimum_Advance_Payment'=>(double) $this->minimum_Advance_Payment,
             'coupon_code'=>$this->coupon_code,
             'client_notes'=>$this->client_notes,
-            'admin_notes'=>$this->admin_notes
+            'admin_notes'=>$this->admin_notes,
+            'yacht'=> $this->whenLoaded('yacht',function(){
+                return new YachtResource($this->yacht);
+            }),
         ];
     }
 }

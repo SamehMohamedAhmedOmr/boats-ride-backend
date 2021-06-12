@@ -14,7 +14,7 @@ class AddYachtIdToTripsTable extends Migration
     public function up()
     {
         Schema::table('trips', function (Blueprint $table) {
-            $table->unsignedBigInteger('yacht_id');
+            $table->unsignedBigInteger('yacht_id')->after('status');
             $table->foreign('yacht_id')->references('id')->on('yachts')->onDelete('cascade');
         });
     }

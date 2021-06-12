@@ -17,8 +17,12 @@ class TripClientResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => property_exists($this,'user') ? $this->user->name : null,
-            'email' => property_exists($this,'user')  ? $this->user->email : null,
+            'name' =>  $this->whenLoaded('user',function(){
+                    return $this->user->name;
+            }),
+            'email' => $this->whenLoaded('user',function(){
+                return $this->user->email;
+             }),
             'phone' => $this->phone,
             'address'=>$this->address,
             'title'=>$this->title,

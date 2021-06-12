@@ -86,7 +86,8 @@ class TripService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-        $model->load(['client.user','client.country']);
+        $model->load(['client.user','client.country','yacht']);
+        
         $model = TripResource::make($model);
         return ApiResponse::format(200, $model);
     }

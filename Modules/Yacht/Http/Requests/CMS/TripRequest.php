@@ -31,6 +31,7 @@ class TripRequest extends FormRequest
             'address'=>'required|string|max:65000',
             'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
             'country_id'=>'nullable|integer|exists:countries,id',
+            'yacht_id'=>'required|integer|exists:yachts,id',
             'number_of_people'=>'required|integer|min:1',
             'rate_per_hour'=>'required|integer|min:1',
             'other_changes'=>'numeric|min:0',
