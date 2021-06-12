@@ -25,3 +25,9 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::apiResource('water_sport_trips', 'WaterSportTripController');
     });
 });
+
+
+
+Route::namespace('Frontend')->group(function () {
+    Route::apiResource('water_sports',WaterSportController::class)->only(['index','show']);
+});
