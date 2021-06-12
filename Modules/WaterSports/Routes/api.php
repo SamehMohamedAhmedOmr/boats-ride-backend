@@ -21,6 +21,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::delete('water_sports/delete/image/{id}', 'WaterSportController@deleteImage');
         Route::get('water_sports/list-enums', 'WaterSportController@listEnums');
         Route::apiResource('water_sports', 'WaterSportController');
-
+        Route::get('water_sport_trips/list-enums', 'WaterSportTripController@listEnums');
+        Route::apiResource('water_sport_trips', 'WaterSportTripController');
     });
 });

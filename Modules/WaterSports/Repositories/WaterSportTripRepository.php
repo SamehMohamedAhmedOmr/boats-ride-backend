@@ -1,0 +1,82 @@
+<?php
+
+namespace Modules\WaterSports\Repositories;
+
+use Modules\Yacht\Entities\Trip;
+use Modules\Frontend\Entities\Banners;
+use Modules\Services\Entities\Service;
+use Illuminate\Support\Facades\Session;
+use Modules\WaterSports\Entities\WaterSportTrip;
+use Modules\Base\Repositories\Classes\LaravelRepositoryClass;
+
+class WaterSportTripRepository extends LaravelRepositoryClass
+{
+    public function __construct(WaterSportTrip $model)
+    {
+        $this->model = $model;
+    }
+
+    public function paginate($per_page = 15, $conditions = [], $search_keys = null, $sort_key = 'id', $sort_order = 'asc', $lang = null)
+    {
+        $query = $this->filtering($search_keys);
+
+        return parent::paginate($query, $per_page, $conditions, $sort_key, $sort_order);
+    }
+
+    public function all($conditions = [], $search_keys = null)
+    {
+        $query = $this->filtering($search_keys);
+
+        return $query->where($conditions)->get();
+    }
+
+    private function filtering($search_keys){
+        $query = $this->model;
+
+        if($search_keys)
+        {
+            $query = $query->where(function ($q) use ($search_keys){
+
+                $local = Session::get('locale');
+
+                $q->orWhere('id', 'LIKE', '%'.$search_keys.'%');
+            });
+        }
+
+        if(request()->has('email') || request()->has('phone'))
+        {
+            $query = $query->whereHas('client',function($query){
+                                    $query->when(request('phone'),function($q){
+                                        return $q->where('phone',request('phone'));
+                                    })->when(request('email'),function($q){
+                                        return $q->whereHas('user',function($q){
+                                            $q->where('email',request('email'));
+                                        });
+                                    });
+                                });
+        }
+
+        if(request()->has('status'))
+        {
+            $query = $query->where('status',(int) request('status'));
+        }
+        
+        
+        if(request()->has('from_date'))
+        {
+            $query = $query->where('start_date','>=',request('from_date'));
+        }
+        
+        if(request()->has('to_date'))
+        {
+            $query = $query->where('end_date','<=',request('to_date'));
+        }
+        
+        return $query;
+    }
+
+    public function getData($conditions = [])
+    {
+        return $this->model->where($conditions)->first();
+    }
+}
