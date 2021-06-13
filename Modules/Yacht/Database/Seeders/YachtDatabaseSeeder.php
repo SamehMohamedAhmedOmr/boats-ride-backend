@@ -4,6 +4,7 @@ namespace Modules\Yacht\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Yacht\Database\Seeders\TimeSlotsTableSeeder;
 
 class YachtDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,6 @@ class YachtDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+         $this->call(TimeSlotsTableSeeder::class);
     }
 }
