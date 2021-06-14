@@ -6,6 +6,7 @@ use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Modules\Seo\Services\CMS\SeoService;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Base\Services\Classes\MediaService;
 use Modules\Frontend\Repositories\BannersRepository;
@@ -16,13 +17,15 @@ use Modules\Services\Transformers\CMS\ServiceResource;
 
 class CMSService extends LaravelServiceClass
 {
-    protected $repository, $mediaService;
+    protected $repository, $mediaService, $seo_service;
 
     public function __construct(ServiceRepository $repository,
+                                SeoService $seo_service,
                                 MediaService $mediaService)
     {
         $this->repository = $repository;
         $this->mediaService = $mediaService;
+        $this->seo_service = $seo_service;
     }
 
     public function index()
@@ -60,6 +63,8 @@ class CMSService extends LaravelServiceClass
                              'ar'=>Str::slug($data['name']['ar'],'-',null)];
             
             $model =  $this->repository->create($data);
+            
+            $this->seo_service->storeSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
 
             $model = ServiceResource::make($model);
 
@@ -71,7 +76,7 @@ class CMSService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-
+        $model->load('seo');
         $model = ServiceResource::make($model);
         return ApiResponse::format(200, $model);
     }
@@ -96,6 +101,7 @@ class CMSService extends LaravelServiceClass
 
         $model = $this->repository->update($id, $data);
 
+        $this->seo_service->updateSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
 
         $model = ServiceResource::make($model);
         return ApiResponse::format(200, $model, 'updated!');
@@ -103,6 +109,7 @@ class CMSService extends LaravelServiceClass
 
     public function delete($id)
     {
+        $this->seo_service->deleteSeo($id,$this->repository->getModelPath());
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
     }

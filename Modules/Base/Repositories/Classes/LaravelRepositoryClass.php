@@ -129,4 +129,10 @@ class LaravelRepositoryClass
     {
         return $query->whereHas($conditions);
     }
+
+    public function getModelPath()
+    {
+        return get_class($this->model);
+    }
+
 }

@@ -14,6 +14,7 @@ use Modules\Yacht\Transformers\CMS\YachtResource;
 use Modules\Yacht\Repositories\TimeSlotRepository;
 use Modules\Frontend\Repositories\BannersRepository;
 use Modules\Services\Repositories\ServiceRepository;
+use Modules\Yacht\Transformers\CMS\TimeSlotResource;
 use Modules\Base\Services\Classes\LaravelServiceClass;
 use Modules\Services\Transformers\Frontend\ServiceResource;
 

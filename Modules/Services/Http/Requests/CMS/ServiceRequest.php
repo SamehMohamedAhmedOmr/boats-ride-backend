@@ -3,6 +3,7 @@
 namespace Modules\Services\Http\Requests\CMS;
 
 use Illuminate\Validation\Rule;
+use Modules\Seo\Facades\SeoHelper;
 use Modules\Services\Enums\PriceModelEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,9 +27,9 @@ class ServiceRequest extends FormRequest
             'price_model'=>'required|integer|in:'.implode(',',PriceModelEnum::values()),
             'minimum_hours_booking'=>'required|integer|min:1',
             'max_quantity'=>'required|integer|min:1',
-            'image'=>'required|string',
+            'image'=>$this->isMethod('POST') ? 'required|string' : 'string',
             
-        ];
+        ] + SeoHelper::validationRules();
     }
 
     /**
