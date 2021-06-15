@@ -40,5 +40,23 @@ class TimeSlotService extends LaravelServiceClass
         return ApiResponse::format(200, $model, null, $pagination);
     }
 
+    public function getTimeSlotsForYacht($date,$yacht_id)
+    {
+        return [
+            $this->getAvalialbleSlotsForYacht($date,$yacht_id),
+            $this->getUnAvalialbleSlotsForYacht($date,$yacht_id)
+        ];
+    }
+
+    public function getAvalialbleSlotsForYacht($date,$yacht_id)
+    {
+        return $this->repository->getAvalialbleSlotsForYacht($date,$yacht_id);
+    }
+
+    
+    public function getUnAvalialbleSlotsForYacht($date,$yacht_id)
+    {
+        return $this->repository->getUnAvalialbleSlotsForYacht($date,$yacht_id);
+    }
 
 }

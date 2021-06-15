@@ -2,6 +2,7 @@
 
 namespace Modules\Yacht\Entities;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,4 +12,31 @@ class TimeSlot extends Model
 
     protected $guarded = [];
     
+    public function scopeAvailableInYachtTrips($query, $date, $yacht)
+    {
+        return $query->whereExists(function ($query) use($date, $yacht){
+            $query->select(DB::raw('1'))
+                  ->from('trips')
+                  ->where('yacht_id',$yacht)
+                  ->where('start_date',$date)
+                  ->where(function($query){
+                      $query->whereColumn('trips.start_hour','>','time_slots.time')
+                            ->orwhereColumn('trips.end_hour','<','time_slots.time');
+                  });
+        });
+    }  
+    
+    public function scopeNotAvailableInYachtTrips($query, $date, $yacht)
+    {
+        return $query->whereExists(function ($query) use($date, $yacht){
+            $query->select(DB::raw('1'))
+                  ->from('trips')
+                  ->where('yacht_id',$yacht)
+                  ->where('start_date',$date)
+                  ->where(function($query){
+                      $query->whereColumn('trips.start_hour','<=','time_slots.time')
+                            ->whereColumn('trips.end_hour','>=','time_slots.time');
+                  });
+        });
+    }  
 }

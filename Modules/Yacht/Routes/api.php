@@ -23,6 +23,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::apiResource('yachts', 'YachtController');
         Route::get('trips/list-enums', 'tripController@listEnums');
         Route::apiResource('trips', 'tripController');
+        Route::post('timeslots/yacht-trips', 'TimeSlotController@getTimeSlotsForYacht');
         Route::apiResource('timeslots', 'TimeSlotController')->only(['index']);
 
     });

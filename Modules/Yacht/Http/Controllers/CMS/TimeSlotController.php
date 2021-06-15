@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Yacht\Services\CMS\TimeSlotService;
+use Modules\Yacht\Transformers\CMS\TripTimeSlotsResource;
 
 class TimeSlotController extends Controller
 {
@@ -24,6 +25,12 @@ class TimeSlotController extends Controller
         return $this->service->index();
     }
    
+    public function getTimeSlotsForYacht(Request $request)
+    {
+        list($available_slots,$unavailable_slots) = $this->service->getTimeSlotsForYacht($request->date,$request->yacht_id);
+
+        return new TripTimeSlotsResource($available_slots, $unavailable_slots);
+    }
 
     
 }
