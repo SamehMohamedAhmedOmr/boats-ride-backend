@@ -68,4 +68,9 @@ class ServicesController extends Controller
     {
         return $this->service->delete($id);
     }
+
+    public function listEnums()
+    {
+        return $this->service->listEnums();
+    }
 }

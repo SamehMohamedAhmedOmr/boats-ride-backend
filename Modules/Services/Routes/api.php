@@ -18,6 +18,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
     Route::middleware('auth:api')->as('admins.')->group(function () {
 
+        Route::get('services/list-enums', 'ServicesController@listEnums');
         Route::apiResource('services', 'ServicesController');
     });
 });

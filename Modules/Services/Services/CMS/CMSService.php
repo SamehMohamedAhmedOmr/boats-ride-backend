@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Seo\Services\CMS\SeoService;
+use Modules\Services\Enums\PriceModelEnum;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Base\Services\Classes\MediaService;
 use Modules\Frontend\Repositories\BannersRepository;
@@ -14,6 +15,7 @@ use Modules\Services\Repositories\ServiceRepository;
 use Modules\Frontend\Transformers\CMS\BannerResource;
 use Modules\Base\Services\Classes\LaravelServiceClass;
 use Modules\Services\Transformers\CMS\ServiceResource;
+use Modules\Services\Transformers\CMS\ServiceEnumsResource;
 
 class CMSService extends LaravelServiceClass
 {
@@ -125,6 +127,20 @@ class CMSService extends LaravelServiceClass
         {
             $this->mediaService->deleteImage('public/'.$old_model->thumbnail);
         }
+    }
+
+
+    public function listEnums()
+    {
+        $enums = new ServiceEnumsResource(
+                                    $this->PriceModels(),
+                                );
+        return ApiResponse::format(200, $enums, 'query successfully !');                                
+    }
+
+    public function PriceModels()
+    {
+        return PriceModelEnum::translatedValues();
     }
 
 }
