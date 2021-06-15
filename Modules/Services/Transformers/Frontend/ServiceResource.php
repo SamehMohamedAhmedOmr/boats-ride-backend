@@ -2,6 +2,7 @@
 
 namespace Modules\Services\Transformers\Frontend;
 
+use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ServiceResource extends JsonResource
@@ -23,6 +24,7 @@ class ServiceResource extends JsonResource
             'max_quantity'=>$this->max_quantity,
             'slug'=>$this->slug,
             'image'=>$this->image_url,
+            'seo'=>new SeoResource($this->whenLoaded('seo'))
         ];;
     }
 }

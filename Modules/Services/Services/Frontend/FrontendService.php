@@ -38,7 +38,7 @@ class FrontendService extends LaravelServiceClass
         $local = Session::get('locale');
         
         $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $locale));
-
+        $model->load('seo');
         $model = ServiceResource::make($model);
         return ApiResponse::format(200, $model);
     }

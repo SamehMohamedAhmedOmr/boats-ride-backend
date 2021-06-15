@@ -2,6 +2,7 @@
 
 namespace Modules\WaterSports\Transformers\CMS;
 
+use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WaterSportResource extends JsonResource
@@ -31,7 +32,8 @@ class WaterSportResource extends JsonResource
             'minimum_booking'=>$this->minimum_booking,
             'apply_vat'=>$this->apply_vat,
             'location'=>$this->location,
-            'images'=>WaterSportImageResource::collection($this->whenLoaded('images'))
+            'images'=>WaterSportImageResource::collection($this->whenLoaded('images')),
+            'seo'=>new SeoResource($this->whenLoaded('seo'))
         ];
     }
 }

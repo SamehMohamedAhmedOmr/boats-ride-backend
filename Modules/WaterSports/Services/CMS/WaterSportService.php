@@ -6,6 +6,7 @@ use Throwable;
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Modules\Seo\Services\CMS\SeoService;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Base\Services\Classes\MediaService;
 use Modules\Yacht\Transformers\CMS\EnumResource;
@@ -21,15 +22,17 @@ use Modules\WaterSports\Transformers\CMS\WaterSportEnumsResource;
 
 class WaterSportService extends LaravelServiceClass
 {
-    protected $repository, $mediaService;
+    protected $repository, $mediaService, $seo_service;
 
     public function __construct(WaterSportRepository $repository,
                                 MediaService $mediaService,
+                                SeoService $seo_service,
                                 WaterSportImageRepository $water_sport_image)
     {
         $this->repository = $repository;
         $this->mediaService = $mediaService;
         $this->water_sport_image = $water_sport_image; 
+        $this->seo_service = $seo_service;
     }
 
     public function index()
@@ -66,6 +69,7 @@ class WaterSportService extends LaravelServiceClass
                 $this->handleUploadImages($request->images,$model->id);
             }
 
+            $this->seo_service->storeSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
              
             $model = WaterSportResource::make($model);
 
@@ -77,7 +81,7 @@ class WaterSportService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-        $model->load(['images']);
+        $model->load(['images','seo']);
         $model = WaterSportResource::make($model);
         return ApiResponse::format(200, $model);
     }
@@ -97,6 +101,7 @@ class WaterSportService extends LaravelServiceClass
                 $this->handleUploadImages($request->images,$model->id);
             }
 
+            $this->seo_service->updateSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
              
             $model = WaterSportResource::make($model);
 
@@ -108,6 +113,7 @@ class WaterSportService extends LaravelServiceClass
 
     public function delete($id)
     {
+        $this->seo_service->deleteSeo($id,$this->repository->getModelPath());
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
     }

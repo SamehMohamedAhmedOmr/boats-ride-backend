@@ -2,6 +2,7 @@
 
 namespace Modules\WaterSports\Entities;
 
+use Modules\Seo\Entities\Seo;
 use Modules\Base\traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\WaterSports\Entities\WaterSportImage;
@@ -19,9 +20,15 @@ class WaterSport extends Model
                         'routes' => 'json',
                          'slug' => 'json']; 
 
-public function images()
-{
-    return $this->hasMany(WaterSportImage::class,'water_sport_id');
-}                     
-        
+    public function images()
+    {
+        return $this->hasMany(WaterSportImage::class,'water_sport_id');
+    }                     
+            
+    public function seo()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
+    }
+
+
 }

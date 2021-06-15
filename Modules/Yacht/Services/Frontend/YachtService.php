@@ -42,7 +42,7 @@ class YachtService extends LaravelServiceClass
         
         $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $locale));
         
-        $model->load(['services','images']);
+        $model->load(['services','images','seo']);
 
         $model = YachtResource::make($model);
         return ApiResponse::format(200, $model);

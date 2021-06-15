@@ -3,6 +3,7 @@
 namespace Modules\Yacht\Transformers\CMS;
 
 use Modules\Yacht\Entities\YachtImage;
+use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Services\Transformers\CMS\ServiceResource;
 use Modules\Yacht\Transformers\CMS\YachtImageResource;
@@ -66,6 +67,7 @@ class YachtResource extends JsonResource
             'fishing_equipment'=>(bool)$this->fishing_equipment,
             'images'=> YachtImageResource::collection($this->whenLoaded('images')),
             'services'=> ServiceResource::collection($this->whenLoaded('services')),
+            'seo'=>new SeoResource($this->whenLoaded('seo'))
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Modules\WaterSports\Http\Requests\CMS;
 
 use Illuminate\Validation\Rule;
+use Modules\Seo\Facades\SeoHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\WaterSports\Enums\WaterSportStatusEnum;
 use Modules\WaterSports\Http\Requests\CMS\WaterSportImageResource;
@@ -41,7 +42,7 @@ class WaterSportRequest extends FormRequest
             'location'=>'required|string|max:65000',
             'images'=>$this->isMethod('POST') ? 'required|array' : 'array',
             'images.*'=>'required|string',
-        ];
+        ] + SeoHelper::validationRules();
     }
 
     /**

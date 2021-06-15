@@ -18,9 +18,9 @@ class WaterSportTripRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_hour'=>'required|date_format:H:i',
+            'start_hour'=>'required|date_format:H:i:s|exists:time_slots,time',
             'start_date'=>'required|date_format:Y-m-d',
-            'end_hour'=>'required|date_format:H:i',
+            'end_hour'=>'required|date_format:H:i:s|exists:time_slots,time|after:start_hour',
             'end_date'=>'required|date_format:Y-m-d',
             'status'=>'required|integer|in:'.implode(',',TripStatusEnum::values()),
             'payment_method'=>'required|integer|in:'.implode(',',PaymentMethodsEnum::values()),

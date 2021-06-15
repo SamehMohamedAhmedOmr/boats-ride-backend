@@ -2,6 +2,7 @@
 
 namespace Modules\Yacht\Entities;
 
+use Modules\Seo\Entities\Seo;
 use Modules\Base\traits\Translatable;
 use Modules\Services\Entities\Service;
 use Modules\Yacht\Entities\YachtImage;
@@ -29,5 +30,9 @@ class Yacht extends Model
     {
         return $this->hasMany(YachtImage::class,'yacht_id');
     }                     
-    
+
+    public function seo()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
+    }
 }

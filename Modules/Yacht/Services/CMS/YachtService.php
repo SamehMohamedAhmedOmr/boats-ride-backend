@@ -10,6 +10,7 @@ use Modules\Yacht\Enums\FuelTypeEnum;
 use Modules\Yacht\Enums\HullTypeEnum;
 use Modules\Yacht\Enums\YachtTypeEnum;
 use Modules\Yacht\Enums\EngineTypeEnum;
+use Modules\Seo\Services\CMS\SeoService;
 use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Base\Services\Classes\MediaService;
@@ -26,14 +27,16 @@ use Modules\Yacht\Transformers\CMS\YachtEnumsResource;
 
 class YachtService extends LaravelServiceClass
 {
-    protected $repository, $mediaService;
+    protected $repository, $mediaService, $seo_service;
 
     public function __construct(YachtRepository $repository,
                                 MediaService $mediaService,
+                                SeoService $seo_service,
                                 YachtImageRepository $yacht_image)
     {
         $this->repository = $repository;
         $this->mediaService = $mediaService;
+        $this->seo_service = $seo_service;
         $this->yacht_image_repository = $yacht_image; 
     }
 
@@ -73,6 +76,7 @@ class YachtService extends LaravelServiceClass
                 $this->handleUploadImages($request->images,$model->id);
             }
 
+            $this->seo_service->storeSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
              
             $model = YachtResource::make($model);
 
@@ -84,7 +88,7 @@ class YachtService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-        $model->load(['services','images']);
+        $model->load(['services','images','seo']);
         $model = YachtResource::make($model);
         return ApiResponse::format(200, $model);
     }
@@ -105,6 +109,7 @@ class YachtService extends LaravelServiceClass
                 $this->handleUploadImages($request->images,$model->id);
             }
 
+            $this->seo_service->updateSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
              
             $model = YachtResource::make($model);
 
@@ -116,6 +121,7 @@ class YachtService extends LaravelServiceClass
 
     public function delete($id)
     {
+        $this->seo_service->deleteSeo($id,$this->repository->getModelPath());
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
     }
