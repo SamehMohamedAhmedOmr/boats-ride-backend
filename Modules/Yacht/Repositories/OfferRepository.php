@@ -42,6 +42,11 @@ class OfferRepository extends LaravelRepositoryClass
                     ->orWhere('id', 'LIKE', '%'.$search_keys.'%');
             });
         }
+
+        if(request('is_active'))
+        {
+            $query = $query->where('is_active',(bool) request('is_active'));
+        }
         
         return $query;
     }
