@@ -25,6 +25,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::apiResource('trips', 'tripController');
         Route::post('timeslots/yacht-trips', 'TimeSlotController@getTimeSlotsForYacht');
         Route::apiResource('timeslots', 'TimeSlotController')->only(['index']);
+        Route::apiResource('offers', 'OfferController');
 
     });
 });
@@ -35,4 +36,9 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
 Route::namespace('Frontend')->group(function () {
     Route::apiResource('yachts',YachtController::class)->only(['index','show']);
+});
+
+
+Route::namespace('Frontend')->group(function () {
+    Route::apiResource('offers',OfferController::class)->only(['index','show']);
 });

@@ -16,5 +16,5 @@ class Seo extends Model
         'description' => 'json',
         'title' => 'json',
     ];
-    protected $fillable = ['keywords','description','title','seoable_id','seoable_type'];
+    protected $fillable = ['keywords','description','title','seoable_id','seoable_type','url'];
 }
