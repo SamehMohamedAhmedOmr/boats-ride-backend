@@ -39,7 +39,10 @@ class WaterSportRequest extends FormRequest
             'special_price'=>'required|numeric|min:1',
             'minimum_booking'=>'required|integer|min:1',
             'apply_vat'=>'required|boolean',
-            'location'=>'required|string|max:65000',
+            // 'location'=>'required|string|max:65000',
+            'location'=>'required|array|size:2',
+            'location.en'=>'required|string|max:65000',
+            'location.ar'=>'required|string|max:65000',
             'images'=>$this->isMethod('POST') ? 'required|array' : 'array',
             'images.*'=>'required|string',
         ] + SeoHelper::validationRules();

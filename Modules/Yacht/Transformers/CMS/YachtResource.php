@@ -3,6 +3,7 @@
 namespace Modules\Yacht\Transformers\CMS;
 
 use Modules\Yacht\Entities\YachtImage;
+use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Services\Transformers\CMS\ServiceResource;
@@ -27,6 +28,7 @@ class YachtResource extends JsonResource
             'what_expect_description'=>$this->what_expect_description,
             'type'=>$this->type,
             'status'=>$this->status,
+            'status_name'=>YachtStatusEnum::getKey($this->status),
             'code'=>$this->code,
             'color'=>$this->color,
             'passenger_capacity'=>$this->passenger_capacity,

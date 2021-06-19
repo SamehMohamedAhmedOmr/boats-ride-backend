@@ -4,6 +4,7 @@ namespace Modules\WaterSports\Transformers\CMS;
 
 use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\WaterSports\Enums\WaterSportStatusEnum;
 
 class WaterSportResource extends JsonResource
 {
@@ -23,6 +24,7 @@ class WaterSportResource extends JsonResource
             'routes'=>$this->routes,
             'slug'=>$this->slug,
             'status'=>$this->status,
+            'status_name'=>WaterSportStatusEnum::getKey($this->status),
             'code'=>$this->code,
             'color'=>$this->color,
             'corporate_company'=>$this->corporate_company,

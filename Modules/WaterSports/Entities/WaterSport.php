@@ -14,11 +14,12 @@ class WaterSport extends Model
 
     protected $guarded = ['id'];
     
-    public $translatable = ['name','what_to_expect_description','water_sport_description','routes','slug'];
+    public $translatable = ['name','what_to_expect_description','water_sport_description','routes','slug','location'];
     protected $casts = ['name' => 'json','what_to_expect_description' =>'json',
                          'water_sport_description' => 'json',
                         'routes' => 'json',
-                         'slug' => 'json']; 
+                         'slug' => 'json',
+                        'location' => 'json']; 
 
     public function images()
     {

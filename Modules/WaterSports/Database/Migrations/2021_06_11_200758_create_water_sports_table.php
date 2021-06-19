@@ -30,7 +30,7 @@ class CreateWaterSportsTable extends Migration
             $table->double('special_price')->default(0);
             $table->unsignedInteger('minimum_booking');
             $table->boolean('apply_vat')->default(false);
-            $table->text('location');
+            $table->json('location');
             $table->timestamps();
         });
     }
