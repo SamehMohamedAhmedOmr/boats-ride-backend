@@ -44,6 +44,7 @@ class WaterSportService extends LaravelServiceClass
             $model = parent::all($this->repository, true);
         }
 
+        $model->load('images');
         $model = WaterSportResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
     }
