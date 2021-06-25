@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Modules\Yacht\Services\CMS\TimeSlotService;
 use Modules\Yacht\Transformers\CMS\TripTimeSlotsResource;
 use Modules\Yacht\Http\Requests\CMS\YachtTimeslotsRequest;
+use Modules\WaterSports\Http\Requests\CMS\WaterSportTimeslotsRequest;
 
 class TimeSlotController extends Controller
 {
@@ -29,6 +30,13 @@ class TimeSlotController extends Controller
     public function getTimeSlotsForYacht(YachtTimeslotsRequest $request)
     {
         list($available_slots,$unavailable_slots) = $this->service->getTimeSlotsForYacht($request->date,$request->yacht_id);
+
+        return new TripTimeSlotsResource($available_slots, $unavailable_slots);
+    }
+
+    public function getTimeSlotsForWaterSport(WaterSportTimeslotsRequest $request)
+    {
+        list($available_slots,$unavailable_slots) = $this->service->getTimeSlotsForWaterSport($request->date,$request->water_sport_id);
 
         return new TripTimeSlotsResource($available_slots, $unavailable_slots);
     }

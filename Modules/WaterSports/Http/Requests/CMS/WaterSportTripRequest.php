@@ -28,9 +28,16 @@ class WaterSportTripRequest extends FormRequest
             'title'=>'required|string|max:255',
             'phone'=>'required|numeric',
             'address'=>'required|string|max:65000',
-            'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
+//            'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
             'country_id'=>'nullable|integer|exists:countries,id',
-            'water_sport_id'=>'required|integer|exists:water_sports,id',
+            'email'=> 'required|email:rfc,filter|string|max:255',
+            'water_sport_id'=>['required','integer','exists:water_sports,id', 
+            Rule::unique('water_sport_trips','water_sport_id')->where(function($q){    
+                return $q->where('start_date',$this->start_date)
+                        ->where('start_hour',$this->start_hour)
+                        ->where('end_date',$this->end_date)
+                        ->where('end_hour',$this->end_hour);
+            })->ignore($this->route('water_sport_trip'))],
             'number_of_people'=>'required|integer|min:1',
             'rate_per_hour'=>'required|integer|min:1',
             'other_changes'=>'numeric|min:0',
@@ -59,5 +66,12 @@ class WaterSportTripRequest extends FormRequest
         $trip = $trip_repo->get($this->route('water_sport_trip'),[],'id',['client']);
 
         return $trip->client ? $trip->client->user_id : null;
+    }
+
+    public function messages()
+    {
+        return [
+            'water_sport_id.unique'=>"this WaterSport is already reserved in this duration"
+        ];
     }
 }

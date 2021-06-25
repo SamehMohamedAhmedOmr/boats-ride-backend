@@ -72,9 +72,11 @@ class TripService extends LaravelServiceClass
 
             $data = $request->validated();
 
-            $client = $this->createClient($request->only(['name','email','address','title','country_id','phone']));
+            //$client = $this->createClient($request->only(['name','email','address','title','country_id','phone']));
                              
-            $model = $this->repository->create($request->validated() + ['client_id'=>$client->id]);
+            //$model = $this->repository->create($request->validated() + ['client_id'=>$client->id]);
+
+            $model = $this->repository->create($request->validated());
             
             $model = new TripResource($model);
             
@@ -86,7 +88,7 @@ class TripService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-        $model->load(['client.user','client.country','yacht']);
+        $model->load(['country','yacht']);
         
         $model = TripResource::make($model);
         return ApiResponse::format(200, $model);
@@ -100,7 +102,7 @@ class TripService extends LaravelServiceClass
                              
             $model =  $this->repository->update($id, $request->validated());
            
-            $this->updateClient($request->only(['name','email','address','title','country_id','phone']),$model->client_id);
+            // $this->updateClient($request->only(['name','email','address','title','country_id','phone']),$model->client_id);
              
             $model = TripResource::make($model);
 

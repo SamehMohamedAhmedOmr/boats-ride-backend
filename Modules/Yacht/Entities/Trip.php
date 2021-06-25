@@ -3,6 +3,7 @@
 namespace Modules\Yacht\Entities;
 
 use Modules\Yacht\Entities\Yacht;
+use Modules\Base\Entities\Country;
 use Modules\Users\Entities\Clients;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,5 +22,10 @@ class Trip extends Model
     public function yacht()
     {
         return $this->belongsTo(Yacht::class,'yacht_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

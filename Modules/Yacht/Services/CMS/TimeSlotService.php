@@ -59,4 +59,23 @@ class TimeSlotService extends LaravelServiceClass
         return $this->repository->getUnAvalialbleSlotsForYacht($date,$yacht_id);
     }
 
+    public function getTimeSlotsForWaterSport($date,$water_sport_id)
+    {
+        return [
+            $this->getAvalialbleSlotsForWaterSport($date,$water_sport_id),
+            $this->getUnAvalialbleSlotsForWaterSport($date,$water_sport_id)
+        ];
+    }
+
+    public function getAvalialbleSlotsForWaterSport($date,$water_sport_id)
+    {
+        return $this->repository->getAvalialbleSlotsForWaterSport($date,$water_sport_id);
+    }
+
+    
+    public function getUnAvalialbleSlotsForWaterSport($date,$water_sport_id)
+    {
+        return $this->repository->getUnAvalialbleSlotsForWaterSport($date,$water_sport_id);
+    }
+
 }

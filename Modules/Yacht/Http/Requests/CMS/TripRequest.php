@@ -21,7 +21,7 @@ class TripRequest extends FormRequest
         return [
             'start_hour'=>'required|date_format:H:i:s|exists:time_slots,time',
             'start_date'=>'required|date_format:Y-m-d',
-            'end_hour'=>'required|date_format:H:i:s|exists:time_slots,time',
+            'end_hour'=>'required|date_format:H:i:s|exists:time_slots,time|after:start_hour',
             'end_date'=>'required|date_format:Y-m-d',
             'status'=>'required|integer|in:'.implode(',',TripStatusEnum::values()),
             'payment_method'=>'required|integer|in:'.implode(',',PaymentMethodsEnum::values()),
@@ -29,7 +29,8 @@ class TripRequest extends FormRequest
             'title'=>'required|string|max:255',
             'phone'=>'required|numeric',
             'address'=>'required|string|max:65000',
-            'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
+      //    'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
+            'email'=> 'required|email:rfc,filter|string|max:255',
             'country_id'=>'nullable|integer|exists:countries,id',
             'yacht_id'=>['required','integer','exists:yachts,id',
             Rule::unique('trips','yacht_id')->where(function($q){

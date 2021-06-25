@@ -38,5 +38,36 @@ class TimeSlot extends Model
                             ->whereColumn('trips.end_hour','>=','time_slots.time');
                   });
         });
+    }
+    
+    
+    // water sports scopes
+
+    public function scopeAvailableInWaterSportTrips($query, $date, $water_sport)
+    {
+        return $query->whereExists(function ($query) use($date, $water_sport){
+            $query->select(DB::raw('1'))
+                  ->from('water_sport_trips')
+                  ->where('water_sport_id',$water_sport)
+                  ->where('start_date',$date)
+                  ->where(function($query){
+                      $query->whereColumn('water_sport_trips.start_hour','>','time_slots.time')
+                            ->orwhereColumn('water_sport_trips.end_hour','<','time_slots.time');
+                  });
+        });
     }  
+    
+    public function scopeNotAvailableInWaterSportTrips($query, $date, $water_sport)
+    {
+        return $query->whereExists(function ($query) use($date, $water_sport){
+            $query->select(DB::raw('1'))
+                  ->from('water_sport_trips')
+                  ->where('water_sport_id',$water_sport)
+                  ->where('start_date',$date)
+                  ->where(function($query){
+                      $query->whereColumn('water_sport_trips.start_hour','<=','time_slots.time')
+                            ->whereColumn('water_sport_trips.end_hour','>=','time_slots.time');
+                  });
+        });
+    }
 }

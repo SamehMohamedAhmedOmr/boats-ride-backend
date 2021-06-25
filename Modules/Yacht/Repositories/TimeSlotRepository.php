@@ -24,5 +24,15 @@ class TimeSlotRepository extends LaravelRepositoryClass
     {
         return $this->model->notAvailableInYachtTrips($date,$yacht_id)->get();
     }
+
+    public function getAvalialbleSlotsForWaterSport($date,$water_sport_id)
+    {
+        return $this->model->availableInWaterSportTrips($date,$water_sport_id)->get();
+    }
+
+    public function getUnAvalialbleSlotsForWaterSport($date,$water_sport_id)
+    {
+        return $this->model->notAvailableInWaterSportTrips($date,$water_sport_id)->get();
+    }
    
 }

@@ -24,6 +24,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::get('trips/list-enums', 'tripController@listEnums');
         Route::apiResource('trips', 'tripController');
         Route::post('timeslots/yacht-trips', 'TimeSlotController@getTimeSlotsForYacht');
+        Route::post('timeslots/water_sport_trips', 'TimeSlotController@getTimeSlotsForWaterSport');
         Route::apiResource('timeslots', 'TimeSlotController')->only(['index']);
         Route::apiResource('offers', 'OfferController');
 
