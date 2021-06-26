@@ -20,10 +20,13 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
         Route::get('services/list-enums', 'ServicesController@listEnums');
         Route::apiResource('services', 'ServicesController');
+        Route::apiResource('blogs', 'BlogController');
     });
 });
 
 
 Route::namespace('Frontend')->group(function () {
     Route::apiResource('services',ServiceController::class)->only(['index','show']);
+    Route::apiResource('blogs',BlogController::class)->only(['index','show']);
+
 });
