@@ -40,7 +40,7 @@ class MediaService
         }
         try {
             $base = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
-            $image = Image::make($base);
+            $image = Image::make($base)->encode('jpg',90);
         } catch (\Exception $e) {
             Errors::cannotUploadImage();
         }
