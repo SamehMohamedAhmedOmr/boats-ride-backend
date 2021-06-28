@@ -2,13 +2,14 @@
 
 namespace Modules\Base\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Modules\Base\Helpers\DbHelper;
 use Modules\Base\Helpers\Errors;
-use Modules\Base\Helpers\ExcelExportHelper;
-use Modules\Base\Helpers\LanguageHelper;
+use Modules\Base\Helpers\DbHelper;
 use Modules\Base\Helpers\Pagination;
+use Illuminate\Support\ServiceProvider;
+use Modules\Base\Helpers\LanguageHelper;
 use Modules\Base\Helpers\UtilitiesHelper;
+use Modules\Base\Helpers\ExcelExportHelper;
+use Modules\Base\Helpers\GenerateRandomStringHelper;
 
 class BaseServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,14 @@ class BaseServiceProvider extends ServiceProvider
         {
             return $this->app->make(Errors::class);
         });
+
+        
+        $this->app->bind('GenerateRandomStringHelper', function()
+        {
+            return $this->app->make(GenerateRandomStringHelper::class);
+        });
+
+        
     }
 
     /**

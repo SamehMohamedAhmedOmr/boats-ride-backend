@@ -6,12 +6,22 @@ use Modules\Yacht\Entities\Yacht;
 use Modules\Base\Entities\Country;
 use Modules\Users\Entities\Clients;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Base\Facade\GenerateRandomStringHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Trip extends Model
 {
     use HasFactory;
 
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $max_id = $model->max('id') != 0 ? $model->max('id') + 1 : 1;
+            $model->booking_number = 'YA-' . GenerateRandomStringHelper::generate(13) . '-' . $max_id;
+        });
+    }
+    
     protected $guarded = ['id'];
     
     public function client()

@@ -5,6 +5,7 @@ namespace Modules\WaterSports\Entities;
 use Modules\Base\Entities\Country;
 use Modules\Users\Entities\Clients;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Base\Facade\GenerateRandomStringHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WaterSportTrip extends Model
@@ -12,7 +13,16 @@ class WaterSportTrip extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-        
+    
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $max_id = $model->max('id') != 0 ? $model->max('id') + 1 : 1;
+            $model->booking_number = 'WS-' . GenerateRandomStringHelper::generate(13) . '-' . $max_id;
+        });
+    }
+    
     public function client()
     {
         return $this->hasOne(Clients::class,'id','client_id');
