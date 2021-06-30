@@ -36,6 +36,7 @@ class TripResource extends JsonResource
             'coupon_code'=>$this->coupon_code,
             'client_notes'=>$this->client_notes,
             'admin_notes'=>$this->admin_notes,
+            'trip_duration'=>$this->trip_duration,
             'name'=>$this->name,
             'email'=>$this->email,
             'title'=>$this->title,

@@ -23,9 +23,19 @@ class TripTimeSlotsResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'available_slots'=>TimeSlotResource::collection($this->avaliable_slots),
-            'unavailable_slots'=>TimeSlotResource::collection($this->unavaliable_slots),
-        ];
+        $this->prepareAvaliableSlots();
+        $this->prepareUnavaliableSlots();
+        $time_slots = $this->avaliable_slots->merge($this->unavaliable_slots)->sortBy('time');
+        return TimeSlotResource::collection($time_slots);
+    }
+
+    public function prepareAvaliableSlots()
+    {
+        $this->avaliable_slots = $this->avaliable_slots->map(function($item) { $item->status = 'available'; return $item; });
+    }
+
+    public function prepareUnavaliableSlots()
+    {
+        $this->unavaliable_slots = $this->unavaliable_slots->map(function($item) { $item->status = 'unavailable'; return $item;});
     }
 }

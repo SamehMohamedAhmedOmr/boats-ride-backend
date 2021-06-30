@@ -16,7 +16,8 @@ class TimeSlotResource extends JsonResource
     {
         return [
             'time'=>$this->time,
-            'lable'=>$this->label
+            'label'=>$this->label,
+            'status'=>$this->status
         ];
     }
 }
