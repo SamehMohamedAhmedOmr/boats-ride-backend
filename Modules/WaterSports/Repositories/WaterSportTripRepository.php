@@ -3,9 +3,11 @@
 namespace Modules\WaterSports\Repositories;
 
 use Modules\Yacht\Entities\Trip;
+use Illuminate\Support\Facades\DB;
 use Modules\Frontend\Entities\Banners;
 use Modules\Services\Entities\Service;
 use Illuminate\Support\Facades\Session;
+use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\WaterSports\Entities\WaterSportTrip;
 use Modules\Base\Repositories\Classes\LaravelRepositoryClass;
 
@@ -78,5 +80,12 @@ class WaterSportTripRepository extends LaravelRepositoryClass
     public function getData($conditions = [])
     {
         return $this->model->where($conditions)->first();
+    }
+
+    public function getCountPerStatuses()
+    {
+         return $this->model->select(DB::raw('count(CASE WHEN status = ' . TripStatusEnum::RESERVATION . ' THEN 1 END) as total_reservation_trips'),
+                                     DB::raw('count(CASE WHEN status = ' . TripStatusEnum::CONFIRM . ' THEN 1 END) as total_confirmed_trips'))
+                                     ->first();
     }
 }

@@ -3,9 +3,11 @@
 namespace Modules\Yacht\Repositories;
 
 use Modules\Yacht\Entities\Trip;
+use Illuminate\Support\Facades\DB;
 use Modules\Frontend\Entities\Banners;
 use Modules\Services\Entities\Service;
 use Illuminate\Support\Facades\Session;
+use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\Base\Repositories\Classes\LaravelRepositoryClass;
 
 class TripRepository extends LaravelRepositoryClass
@@ -88,6 +90,13 @@ class TripRepository extends LaravelRepositoryClass
     {
         $model->services()->detach();
         $model->services()->attach($data);
+    }
+
+    public function getCountPerStatuses()
+    {
+         return $this->model->select(DB::raw('count(CASE WHEN status = ' . TripStatusEnum::RESERVATION . ' THEN 1 END) as total_reservation_trips'),
+                                     DB::raw('count(CASE WHEN status = ' . TripStatusEnum::CONFIRM . ' THEN 1 END) as total_confirmed_trips'))
+                                     ->first();
     }
 
 }
