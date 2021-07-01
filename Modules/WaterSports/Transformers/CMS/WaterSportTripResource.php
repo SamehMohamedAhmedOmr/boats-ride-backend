@@ -2,6 +2,8 @@
 
 namespace Modules\WaterSports\Transformers\CMS;
 
+use Modules\Yacht\Enums\TripStatusEnum;
+use Modules\Yacht\Enums\PaymentMethodsEnum;
 use Modules\Base\Transformers\CountryResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Yacht\Transformers\CMS\TripClientResource;
@@ -24,7 +26,9 @@ class WaterSportTripResource extends JsonResource
             'end_hour'=>$this->end_hour,
             'end_date'=>$this->end_date,
             'status'=>$this->status,
+            'status_name'=> TripStatusEnum::getKey($this->status),
             'payment_method'=>$this->payment_method,
+            'payment_method_name'=>PaymentMethodsEnum::getKey($this->payment_method),
             // 'client'=> $this->whenLoaded('client',function(){
             //     return new TripClientResource($this->client);
             // }),

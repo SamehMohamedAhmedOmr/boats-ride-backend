@@ -60,7 +60,7 @@ class WaterSportTripService extends LaravelServiceClass
             $model = parent::all($this->repository, true);
         }
         
-        $model = TripResource::collection($model);
+        $model = WaterSportTripResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
     }
 
