@@ -46,15 +46,20 @@ class TripRepository extends LaravelRepositoryClass
 
         if(request()->has('email') || request()->has('phone'))
         {
-            $query = $query->whereHas('client',function($query){
-                                    $query->when(request('phone'),function($q){
+            // $query = $query->whereHas('client',function($query){
+            //                         $query->when(request('phone'),function($q){
+            //                             return $q->where('phone',request('phone'));
+            //                         })->when(request('email'),function($q){
+            //                             return $q->whereHas('user',function($q){
+            //                                 $q->where('email',request('email'));
+            //                             });
+            //                         });
+            //                     });
+            $query =  $query->when(request('phone'),function($q){
                                         return $q->where('phone',request('phone'));
                                     })->when(request('email'),function($q){
-                                        return $q->whereHas('user',function($q){
-                                            $q->where('email',request('email'));
-                                        });
+                                        return $q->where('email',request('email'));
                                     });
-                                });
         }
 
         if(request()->has('status'))
