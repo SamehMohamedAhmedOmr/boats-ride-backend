@@ -17,7 +17,9 @@ class TimeSlotResource extends JsonResource
         return [
             'time'=>$this->time,
             'label'=>$this->label,
-            'status'=>$this->status
+            'status'=>$this->when($this->status,function(){
+                return $this->status;
+            })
         ];
     }
 }

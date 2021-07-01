@@ -23,12 +23,7 @@ class TimeSlot extends Model
                       $query->whereColumn('trips.start_hour','>','time_slots.time')
                             ->orwhereColumn('trips.end_hour','<','time_slots.time');
                   });
-        })->orWhereExists(function ($query) use($date, $yacht){
-            $query->select(DB::raw('1'))
-                ->from('trips')
-                ->where('yacht_id','!=',$yacht)
-                ->where('start_date','!=',$date);
-        });
+        })->orWhereRaw('( select COUNT(*) from `trips` where `yacht_id` = ? and `start_date` = ? ) = 0',[$yacht,$date]);
     }  
     
     public function scopeNotAvailableInYachtTrips($query, $date, $yacht)
@@ -58,12 +53,7 @@ class TimeSlot extends Model
                   ->where(function($query){
                       $query->whereColumn('water_sport_trips.start_hour','>','time_slots.time')
                             ->orwhereColumn('water_sport_trips.end_hour','<','time_slots.time');
-                  })->orWhereExists(function ($query) use($date, $water_sport){
-                    $query->select(DB::raw('1'))
-                        ->from('water_sport_trips')
-                        ->where('water_sport_id','!=',$water_sport)
-                        ->where('start_date','!=',$date);
-                });
+                  })->orWhereRaw('( select COUNT(*) from `water_sport_trips` where `water_sport_id` = ? and `start_date` = ? ) = 0',[$water_sport,$date]);
         });
     }  
     

@@ -19,10 +19,12 @@ use Modules\Users\Services\CMS\ClientsService;
 use Modules\Yacht\Repositories\TripRepository;
 use Modules\Base\Services\Classes\MediaService;
 use Modules\Yacht\Repositories\YachtRepository;
+use Modules\Base\Repositories\CountryRepository;
 use Modules\Yacht\Transformers\CMS\EnumResource;
 use Modules\Yacht\Transformers\CMS\TripResource;
 use Modules\Users\Repositories\ClientsRepository;
 use Modules\Yacht\Transformers\CMS\YachtResource;
+use Modules\Yacht\Repositories\TimeSlotRepository;
 use Modules\Frontend\Repositories\BannersRepository;
 use Modules\Services\Repositories\ServiceRepository;
 use Modules\Yacht\Transformers\CMS\TripEnumsResource;
@@ -33,16 +35,20 @@ use Modules\WaterSports\Transformers\CMS\WaterSportTripResource;
 
 class WaterSportTripService extends LaravelServiceClass
 {
-    protected $repository, $client_service;
+    protected $repository, $client_service, $time_slot_repo, $country_repo;
 
     public function __construct(WaterSportTripRepository $repository,
                                 UserRepository $user_repo,
-                                ClientsRepository $clientRepository
+                                ClientsRepository $clientRepository,
+                                TimeSlotRepository $time_slot_repo,
+                                CountryRepository $country_repo
                                 )
     {
         $this->repository = $repository;
         $this->user_repo = $user_repo;
         $this->clientRepository = $clientRepository;
+        $this->time_slot_repo = $time_slot_repo;
+        $this->country_repo = $country_repo;
     }
 
     public function index()
@@ -134,6 +140,8 @@ class WaterSportTripService extends LaravelServiceClass
         $enums = new TripEnumsResource(
                                     $this->listTripStatus(),
                                     $this->listPaymentMethodsTypes(),
+                                    $this->time_slot_repo->all(),
+                                    $this->country_repo->all()
                                 );
         return ApiResponse::format(200, $enums, 'query successfully !');                                
     }
