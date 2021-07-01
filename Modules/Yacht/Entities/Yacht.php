@@ -7,11 +7,12 @@ use Modules\Base\traits\Translatable;
 use Modules\Services\Entities\Service;
 use Modules\Yacht\Entities\YachtImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Yacht extends Model
 {
-    use HasFactory,Translatable;
+    use HasFactory,Translatable,SoftDeletes;
 
     protected $guarded = ['id'];
     public $translatable = ['name','what_expect_description','what_is_included','facilities','slug'];

@@ -112,8 +112,6 @@ class BlogService extends LaravelServiceClass
     public function delete($id)
     {
         $this->seo_service->deleteSeo($id,$this->repository->getModelPath());
-        $old_model = $this->repository->get($id);
-        $this->deleteBlogImages($old_model);
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
     }

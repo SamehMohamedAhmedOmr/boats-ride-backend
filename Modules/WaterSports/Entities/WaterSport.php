@@ -5,12 +5,13 @@ namespace Modules\WaterSports\Entities;
 use Modules\Seo\Entities\Seo;
 use Modules\Base\traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\WaterSports\Entities\WaterSportImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WaterSport extends Model
 {
-    use HasFactory,Translatable;
+    use HasFactory,Translatable,SoftDeletes;
 
     protected $guarded = ['id'];
     

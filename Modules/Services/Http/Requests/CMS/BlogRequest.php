@@ -23,6 +23,7 @@ class BlogRequest extends FormRequest
             'description.en'=>'required|string|max:2000000',
             'description.ar'=>'required|string|max:2000000',
             'image'=>$this->isMethod('POST') ? 'required|string' : 'string',
+            'is_active'=>'required|boolean'
             
         ] + SeoHelper::validationRules();
     }
