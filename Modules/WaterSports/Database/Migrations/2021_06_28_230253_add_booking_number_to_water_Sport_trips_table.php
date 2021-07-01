@@ -13,7 +13,7 @@ class AddBookingNumberToWaterSportTripsTable extends Migration
      */
     public function up()
     {
-        Schema::table('water_Sport_trips', function (Blueprint $table) {
+        Schema::table('water_sport_trips', function (Blueprint $table) {
             $table->string('booking_number')->nullable()->unique();
         });
     }
@@ -25,7 +25,7 @@ class AddBookingNumberToWaterSportTripsTable extends Migration
      */
     public function down()
     {
-        Schema::table('water_Sport_trips', function (Blueprint $table) {
+        Schema::table('water_sport_trips', function (Blueprint $table) {
             $table->dropColumn('booking_number');
         });
     }

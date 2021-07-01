@@ -4,6 +4,7 @@ namespace Modules\Yacht\Http\Controllers\CMS;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Base\ResponseShape\ApiResponse;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Yacht\Services\CMS\TimeSlotService;
 use Modules\Yacht\Transformers\CMS\TripTimeSlotsResource;
@@ -31,14 +32,14 @@ class TimeSlotController extends Controller
     {
         list($available_slots,$unavailable_slots) = $this->service->getTimeSlotsForYacht($request->date,$request->yacht_id);
 
-        return new TripTimeSlotsResource($available_slots, $unavailable_slots);
+        return ApiResponse::format(200, new TripTimeSlotsResource($available_slots, $unavailable_slots), null);
     }
 
     public function getTimeSlotsForWaterSport(WaterSportTimeslotsRequest $request)
     {
         list($available_slots,$unavailable_slots) = $this->service->getTimeSlotsForWaterSport($request->date,$request->water_sport_id);
 
-        return new TripTimeSlotsResource($available_slots, $unavailable_slots);
+        return ApiResponse::format(200, new TripTimeSlotsResource($available_slots, $unavailable_slots), null);
     }
 
     

@@ -31,11 +31,11 @@ class TripTimeSlotsResource extends JsonResource
 
     public function prepareAvaliableSlots()
     {
-        $this->avaliable_slots = $this->avaliable_slots->map(function($item) { $item->status = 'available'; return $item; });
+        $this->avaliable_slots = $this->avaliable_slots->map(function($item) { $item->status = 'AVAILABLE'; return $item; });
     }
 
     public function prepareUnavaliableSlots()
     {
-        $this->unavaliable_slots = $this->unavaliable_slots->map(function($item) { $item->status = 'unavailable'; return $item;});
+        $this->unavaliable_slots = $this->unavaliable_slots->map(function($item) { $item->status = 'UNAVAILABLE'; return $item;});
     }
 }
