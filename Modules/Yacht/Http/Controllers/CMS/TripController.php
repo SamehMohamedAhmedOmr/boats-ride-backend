@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Yacht\Services\CMS\TripService;
 use Illuminate\Contracts\Support\Renderable;
+use Modules\Base\Requests\PaginationRequest;
 use Modules\Yacht\Http\Requests\CMS\TripRequest;
 
 class TripController extends Controller
@@ -20,7 +21,7 @@ class TripController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
         return $this->service->index();
     }

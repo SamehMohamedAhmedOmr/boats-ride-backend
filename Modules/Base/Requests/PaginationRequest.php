@@ -20,7 +20,13 @@ class PaginationRequest extends FormRequest
                 'sort_key' => 'string|max:255|in:id,created_at,updated_at,order,date',
                 'sort_order' => 'string|in:asc,desc',
                 'is_active' => 'boolean',
-                'search_key' => 'string|max:255'
+                'search_key' => 'string|max:255',
+                'phone'=>'string|max:20',
+                'email'=>'string|max:255',
+                'from_date'=>'string',
+                'to_date'=>'string',
+                'booking_number'=>'string',
+                'status'=>'string'
             ];
         }
     }
