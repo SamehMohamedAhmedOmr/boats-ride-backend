@@ -26,7 +26,7 @@ class TripResource extends JsonResource
             'end_date' => $this->end_date,
             'status' => $this->status,
             'phone' => $this->phone,
-            'country_code'>$this->country_code,
+            'country_code'=>$this->country_code,
             'status_name' => TripStatusEnum::getKey($this->status),
             'payment_method' => $this->payment_method,
             'payment_method_name' => PaymentMethodsEnum::getKey($this->payment_method),

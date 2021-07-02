@@ -46,7 +46,7 @@ class WaterSportTripResource extends JsonResource
             'title'=>$this->title,
             'address'=>$this->address,
             'phone'=>$this->phone,
-            'country_code'>$this->country_code,
+            'country_code'=>$this->country_code,
             'country'=> $this->whenLoaded('country',function(){
                 return CountryResource::make($this->country);
              }),
