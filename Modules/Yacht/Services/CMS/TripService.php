@@ -60,7 +60,8 @@ class TripService extends LaravelServiceClass
         } else {
             $model = parent::all($this->repository, true);
         }
-        
+
+        $model->load(['yacht']);
         $model = TripResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
     }
