@@ -56,9 +56,9 @@ class TripRepository extends LaravelRepositoryClass
             //                         });
             //                     });
             $query =  $query->when(request('phone'),function($q){
-                                        return $q->where('phone','%'. request('phone') . '%');
+                                        return $q->where('phone','like','%'. request('phone') . '%');
                                     })->when(request('email'),function($q){
-                                        return $q->where('email','%' . request('email') . '%');
+                                        return $q->where('email','like','%' . request('email') . '%');
                                     });
         }
 
