@@ -28,6 +28,7 @@ class WaterSportTripRequest extends FormRequest
             'title'=>'required|string|max:255',
             'phone'=>'required|string|max:20',
             'address'=>'required|string|max:65000',
+            'country_code'=>'required|string|max:10',
 //            'email'=> $this->isMethod('POST') ? 'required|email:rfc,filter|unique:users,email' : ['required','email:rfc,filter',Rule::unique('users','email')->ignore($this->getUserId())],
             'country_id'=>'nullable|integer|exists:countries,id',
             'email'=> 'required|email:rfc,filter|string|max:255',
