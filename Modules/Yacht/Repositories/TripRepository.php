@@ -77,6 +77,11 @@ class TripRepository extends LaravelRepositoryClass
         {
             $query = $query->where('end_date','<=',request('to_date'));
         }
+
+        if(request()->has('booking_number'))
+        {
+            $query = $query->where('booking_number', request('booking_number'));
+        }
         
         return $query;
     }
