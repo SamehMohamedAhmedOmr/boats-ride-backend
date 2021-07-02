@@ -13,8 +13,8 @@ class Blog extends Model
 {
     use HasFactory,Translatable,SoftDeletes;
     protected $guarded = ['id'];
-    public $translatable = ['title','description','slug'];
-    protected $casts = ['title' => 'json','description' => 'json', 'slug' => 'json'];   
+    public $translatable = ['title','description','slug','label'];
+    protected $casts = ['title' => 'json','description' => 'json', 'slug' => 'json', 'label' => 'json'];   
 
 
     public function getImageUrlAttribute(){
