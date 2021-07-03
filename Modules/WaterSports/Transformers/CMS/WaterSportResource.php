@@ -31,6 +31,7 @@ class WaterSportResource extends JsonResource
             'corporate_price'=>(double)$this->corporate_price,
             'selling_per_hour'=>$this->selling_per_hour,
             'special_price'=>(double) $this->special_price,
+            'total_price' => (double) $this->total_price,
             'minimum_booking'=>$this->minimum_booking,
             'apply_vat'=>$this->apply_vat,
             'location'=>$this->location,
