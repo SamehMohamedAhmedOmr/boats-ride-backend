@@ -40,7 +40,7 @@ class YachtService extends LaravelServiceClass
     {
         $local = Session::get('locale');
         
-        $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $locale));
+        $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $local));
         
         $model->load(['services','images','seo']);
 
