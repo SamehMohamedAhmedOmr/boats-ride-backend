@@ -58,11 +58,10 @@ class WaterSportTripRepository extends LaravelRepositoryClass
             //                     });
 
             $query =  $query->when(request('phone'),function($q){
-                                return $q->where('phone',request('phone'));
-                            })
-                            ->when(request('email'),function($q){
-                                return $q->where('email',request('email'));
-                            });
+                                    return $q->where('phone','LIKE','%'. request('phone') . '%');
+                          })->when(request('email'),function($q){
+                                    return $q->where('email','LIKE','%' . request('email') . '%');
+                                });
         }
 
         if(request()->has('status'))
