@@ -14,7 +14,7 @@ class YachtTimeslotsRequest extends FormRequest
     public function rules()
     {
         return [
-            'date'=>'date_format:Y-m-d|after_or_equal:'.now()->format('Y-m-d'),
+            'date'=>'date_format:Y-m-d'.($this->isMethod('POST') ? '|after_or_equal:'.now()->format('Y-m-d') : ''),
             'yacht_id'=>'required|integer|exists:yachts,id'
         ];
     }
