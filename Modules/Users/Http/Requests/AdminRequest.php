@@ -38,6 +38,8 @@ class AdminRequest extends FormRequest
                     'name' => 'required|string|regex:'.UsersErrorsHelper::regexName().'|max:255',
                     'email' => 'required|email:rfc,filter|unique:users,email',
                     'password' => 'required|string|min:6',
+                    'permissions'=>'required|array',
+                    'permissions.*'=>'required|integer|exists:permissions,id',
 
                     'roles' => 'required|array',
                     'roles.*' => 'required|integer|exists:roles,id'.$delete_check,

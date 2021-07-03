@@ -3,8 +3,9 @@
 namespace Modules\Users\Transformers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\ACL\Transformers\RoleResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Users\Transformers\PermissionResource;
 
 class AdminResource extends JsonResource
 {
@@ -21,7 +22,8 @@ class AdminResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'is_active' => $this->is_active,
-            'roles' => RoleResource::collection($this->whenLoaded('roles'))
+            'roles' => RoleResource::collection($this->whenLoaded('roles')),
+            'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
         ];
     }
 }

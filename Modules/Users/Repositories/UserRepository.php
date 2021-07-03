@@ -77,4 +77,14 @@ class UserRepository extends LaravelRepositoryClass
         return $query->take($limit)->get();
     }
 
+    
+    public function syncPermissions($model,$permissions){
+        $model->permissions()->sync($permissions);
+    }
+
+    public function getMyPermission($user_id){
+        $admin = $this->get($user_id,[],'id',['permissions']);
+        return $admin->permissions;
+    }
+
 }

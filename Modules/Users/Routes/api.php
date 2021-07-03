@@ -88,7 +88,9 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
                 ->name('update');
         });
 
+        Route::get('admins/get_permissions', 'AdminController@getMyPermissions');
         Route::apiResource('admins', 'AdminController');
+        Route::apiResource('permissions', 'PermissionController')->only(['index']);
 
         Route::prefix('admins')->as('admins.')->group(function () {
             Route::get('/sheet/export', [AdminController::class, 'export'])

@@ -2,12 +2,13 @@
 
 namespace Modules\Users\Entities;
 
+use Modules\ACL\Entities\Role;
+use Laravel\Passport\HasApiTokens;
+use Modules\ACL\Entities\UserHasRoles;
+use Modules\Users\Entities\Permission;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticated;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use Modules\ACL\Entities\Role;
-use Modules\ACL\Entities\UserHasRoles;
 
 
 class User extends Authenticated
@@ -63,6 +64,11 @@ class User extends Authenticated
             'role_id'
         )
             ->using(UserHasRoles::class);
+    }
+
+    
+    public function permissions(){
+        return $this->belongsToMany(Permission::class,'admin_permissions','user_id','permission_id');
     }
 
 }

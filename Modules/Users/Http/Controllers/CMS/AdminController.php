@@ -79,4 +79,9 @@ class AdminController extends Controller
     {
         return $this->admin_service->export();
     }
+
+    public function getMyPermissions()
+    {
+        return $this->admin_service->getMyPermissions(auth()->id());
+    }
 }

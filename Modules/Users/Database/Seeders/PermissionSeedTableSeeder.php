@@ -3,8 +3,10 @@
 namespace Modules\Users\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Users\Entities\User;
 use Modules\Users\Entities\Permission;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Users\Facades\UsersTypesHelper;
 
 class PermissionSeedTableSeeder extends Seeder
 {
@@ -20,6 +22,13 @@ class PermissionSeedTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         foreach($this->getPreDefinedPermissions() as $permission){
             Permission::updateOrCreate(['key'=>$permission['key']],$permission);
+        }
+
+        $admin = User::where('user_type',UsersTypesHelper::getAdminTypeId())->first();
+        
+        if($admin){
+           $perms = Permission::get(['id'])->pluck('id');
+           $admin->permissions()->sync($perms);
         }
     }
 

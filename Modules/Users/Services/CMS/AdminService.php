@@ -6,11 +6,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Base\Facade\ExcelExportHelper;
 use Modules\Base\ResponseShape\ApiResponse;
-use Modules\Base\Services\Classes\LaravelServiceClass;
 use Modules\Users\ExcelExports\AdminExport;
-use Modules\Users\Repositories\AdminRepository;
-use Modules\Users\Repositories\UserRepository;
 use Modules\Users\Transformers\AdminResource;
+use Modules\Users\Repositories\UserRepository;
+use Modules\Users\Repositories\AdminRepository;
+use Modules\Users\Transformers\PermissionResource;
+use Modules\Base\Services\Classes\LaravelServiceClass;
 
 class AdminService extends LaravelServiceClass
 {
@@ -63,6 +64,7 @@ class AdminService extends LaravelServiceClass
 
             $this->user_repo->syncRoles($user, $request->roles);
 
+            $this->user_repo->syncPermissions($user,$request->input('permissions',[]));
 
             $user->load([
                 'roles',
@@ -80,7 +82,7 @@ class AdminService extends LaravelServiceClass
         ]);
 
         $user->load([
-            'roles',
+            'roles','permissions'
         ]);
 
         $user = AdminResource::make($user);
@@ -94,7 +96,11 @@ class AdminService extends LaravelServiceClass
         if ($request->roles) {
             $this->user_repo->syncRoles($user, $request->roles);
         }
-
+        
+        if ($request->permissions) {
+            $this->user_repo->syncPermissions($user,$request->permissions);
+        }
+          
         $user->load([
             'roles',
         ]);
@@ -116,4 +122,9 @@ class AdminService extends LaravelServiceClass
     }
 
 
+    public function getMyPermissions($user_id)
+    {
+        $perms = $this->user_repo->getMyPermission($user_id);
+        return ApiResponse::format(200, PermissionResource::collection($perms));
+    }
 }
