@@ -22,9 +22,6 @@ class BlogRequest extends FormRequest
             'description'=>'required|array|size:2',
             'description.en'=>'required|string|max:2000000',
             'description.ar'=>'required|string|max:2000000',
-            'label'=>'required|array|size:2',
-            'label.en'=>'required|string|max:2000000',
-            'label.ar'=>'required|string|max:2000000',
             'author'=>'required|string|max:255',
             'image'=>$this->isMethod('POST') ? 'required|string' : 'string',
             'is_active'=>'required|boolean'

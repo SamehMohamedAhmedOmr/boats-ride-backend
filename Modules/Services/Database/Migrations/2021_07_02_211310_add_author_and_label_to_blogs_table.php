@@ -15,7 +15,7 @@ class AddAuthorAndLabelToBlogsTable extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
               $table->string('author')->nullable();
-              $table->json('label')->nullable();
+            //   $table->json('label')->nullable();
         });
     }
 

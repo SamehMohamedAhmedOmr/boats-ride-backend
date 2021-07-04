@@ -23,7 +23,6 @@ class BlogResource extends JsonResource
             'image'=>$this->image_url,
             'thumbnail'=>$this->thumbnail_url,
             'is_active'=>(bool) $this->is_active,
-            'label'=>$this->label,
             'author'=>$this->author,
             'seo'=>new SeoResource($this->whenLoaded('seo'))
         ];
