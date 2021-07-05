@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Yacht\Enums\FuelTypeEnum;
 use Modules\Yacht\Enums\HullTypeEnum;
 use Modules\Yacht\Enums\YachtTypeEnum;
+use Illuminate\Support\Facades\Session;
 use Modules\Yacht\Enums\EngineTypeEnum;
 use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\Yacht\Enums\YachtStatusEnum;
@@ -26,6 +27,7 @@ use Modules\Users\Repositories\ClientsRepository;
 use Modules\Yacht\Transformers\CMS\YachtResource;
 use Modules\Yacht\Repositories\TimeSlotRepository;
 use Modules\Frontend\Repositories\BannersRepository;
+use Modules\Notifications\Services\CMS\EmailService;
 use Modules\Services\Repositories\ServiceRepository;
 use Modules\Yacht\Repositories\YachtImageRepository;
 use Modules\Frontend\Transformers\CMS\BannerResource;
@@ -36,13 +38,14 @@ use Modules\Yacht\Transformers\CMS\YachtEnumsResource;
 
 class TripService extends LaravelServiceClass
 {
-    protected $repository, $client_service, $time_slot_repo, $country_repo;
+    protected $repository, $client_service, $time_slot_repo, $country_repo,$email_service;
 
     public function __construct(TripRepository $repository,
                                 UserRepository $user_repo,
                                 ClientsRepository $clientRepository,
                                 TimeSlotRepository $time_slot_repo,
-                                CountryRepository $country_repo
+                                CountryRepository $country_repo,
+                                EmailService $email_service
                                 )
     {
         $this->repository = $repository;
@@ -50,6 +53,7 @@ class TripService extends LaravelServiceClass
         $this->clientRepository = $clientRepository;
         $this->time_slot_repo = $time_slot_repo;
         $this->country_repo = $country_repo;
+        $this->email_service = $email_service;
     }
 
     public function index()
@@ -82,8 +86,11 @@ class TripService extends LaravelServiceClass
             //$client = $this->createClient($request->only(['name','email','address','title','country_id','phone']));
                              
             //$model = $this->repository->create($request->validated() + ['client_id'=>$client->id]);
-
+                 
             $model = $this->repository->create($request->validated());
+
+            Session::put('locale', 'en');
+            $this->email_service->email($model->email,'Yacht','emails.reservation','confirm reservation proccess',['trip'=>$model]);
             
             $model = new TripResource($model);
             
