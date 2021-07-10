@@ -89,8 +89,8 @@ class TripService extends LaravelServiceClass
                  
             $model = $this->repository->create($request->validated());
 
-            Session::put('locale', 'en');
-            $this->email_service->email($model->email,'Yacht','emails.reservation','confirm reservation proccess',['trip'=>$model]);
+            // Session::put('locale', 'en');
+            // $this->email_service->email($model->email,'Yacht','emails.reservation','confirm reservation proccess',['trip'=>$model]);
             
             $model = new TripResource($model);
             
