@@ -47,7 +47,8 @@ class WaterSportTripRequest extends FormRequest
             'coupon_code'=>'nullable|string|max:50',
             'client_notes'=>'nullable|string|max:65000',
             'admin_notes'=>'nullable|string|max:65000',
-            'trip_duration'=>'required|numeric|min:0.5'
+            'trip_duration'=>'required|numeric|min:0.5',
+            'total_price'=>'required|numeric|min:1'
         ];
     }
 
