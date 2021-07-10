@@ -41,6 +41,8 @@ class WaterSportTripResource extends JsonResource
             'client_notes'=>$this->client_notes,
             'admin_notes'=>$this->admin_notes,
             'trip_duration'=>$this->trip_duration,
+            'booking_number' => $this->booking_number,
+            'total_price' => (double) $this->total_price,
             'name'=>$this->name,
             'email'=>$this->email,
             'title'=>$this->title,
