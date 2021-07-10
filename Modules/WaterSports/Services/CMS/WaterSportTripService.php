@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Yacht\Enums\FuelTypeEnum;
 use Modules\Yacht\Enums\HullTypeEnum;
 use Modules\Yacht\Enums\YachtTypeEnum;
+use Illuminate\Support\Facades\Session;
 use Modules\Yacht\Enums\EngineTypeEnum;
 use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\Yacht\Enums\YachtStatusEnum;
@@ -26,6 +27,7 @@ use Modules\Users\Repositories\ClientsRepository;
 use Modules\Yacht\Transformers\CMS\YachtResource;
 use Modules\Yacht\Repositories\TimeSlotRepository;
 use Modules\Frontend\Repositories\BannersRepository;
+use Modules\Notifications\Services\CMS\EmailService;
 use Modules\Services\Repositories\ServiceRepository;
 use Modules\Yacht\Transformers\CMS\TripEnumsResource;
 use Modules\Base\Services\Classes\LaravelServiceClass;
@@ -35,13 +37,14 @@ use Modules\WaterSports\Transformers\CMS\WaterSportTripResource;
 
 class WaterSportTripService extends LaravelServiceClass
 {
-    protected $repository, $client_service, $time_slot_repo, $country_repo;
+    protected $repository, $client_service, $time_slot_repo, $country_repo, $email_service;
 
     public function __construct(WaterSportTripRepository $repository,
                                 UserRepository $user_repo,
                                 ClientsRepository $clientRepository,
                                 TimeSlotRepository $time_slot_repo,
-                                CountryRepository $country_repo
+                                CountryRepository $country_repo,
+                                EmailService $email_service
                                 )
     {
         $this->repository = $repository;
@@ -49,6 +52,7 @@ class WaterSportTripService extends LaravelServiceClass
         $this->clientRepository = $clientRepository;
         $this->time_slot_repo = $time_slot_repo;
         $this->country_repo = $country_repo;
+        $this->email_service = $email_service;
     }
 
     public function index()
@@ -82,6 +86,10 @@ class WaterSportTripService extends LaravelServiceClass
            // $model = $this->repository->create($request->validated() + ['client_id'=>$client->id]);
 
            $model = $this->repository->create($request->validated());
+
+            Session::put('locale', 'en');
+            $model->load(['waterSport.images']);
+            $this->email_service->email($model->email,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);
             
             $model = new WaterSportTripResource($model);
             

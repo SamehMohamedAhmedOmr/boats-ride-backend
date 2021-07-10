@@ -5,6 +5,7 @@ namespace Modules\WaterSports\Entities;
 use Modules\Base\Entities\Country;
 use Modules\Users\Entities\Clients;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\Base\Facade\GenerateRandomStringHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -36,5 +37,10 @@ class WaterSportTrip extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function getStatusName()
+    {
+        return TripStatusEnum::getKey($this->status);
     }
 }
