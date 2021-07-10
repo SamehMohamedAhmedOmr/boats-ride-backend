@@ -53,8 +53,8 @@ class TimeSlot extends Model
                   ->where(function($query){
                       $query->whereColumn('water_sport_trips.start_hour','>','time_slots.time')
                             ->orwhereColumn('water_sport_trips.end_hour','<','time_slots.time');
-                  })->orWhereRaw('( select COUNT(*) from `water_sport_trips` where `water_sport_id` = ? and `start_date` = ? ) = 0',[$water_sport,$date]);
-        });
+                  });
+        })->orWhereRaw('( select COUNT(*) from `water_sport_trips` where `water_sport_id` = ? and `start_date` = ? ) = 0',[$water_sport,$date]);
     }  
     
     public function scopeNotAvailableInWaterSportTrips($query, $date, $water_sport)
