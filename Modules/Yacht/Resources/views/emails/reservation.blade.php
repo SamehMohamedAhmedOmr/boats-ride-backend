@@ -264,20 +264,6 @@
                                         </tbody></table>
                                         
                                         <hr style="border:0;border:1px solid #ddd;height:0;margin:0;margin-bottom:15px;margin-top:30px">
-                                        
-                                        <table border="0" width="100%" cellspacing="0">
-                                            <tbody><tr>
-                                                <td style="padding-right:15px">
-                                                    <h4 style="margin-top:0;margin-bottom:7px">Dear dfgf rgrg</h4> 
-                                                    <p>Visit our website today and check all latest yachts and offers. Now booking your yacht online in 3 simple steps!</p>
-                                                    <a href="https://asfaryacht.com" style="color:#ec6f23" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNFABbnXmFMp47CNSi48lj2WssOuXw">Go to Asfaryacht.com</a>
-                                                </td>
-                                                <td width="350">
-                                                    <a href="#m_-1757351091086838996_m_5930464513775716706_m_1846324454999606905_" rel="noreferrer"><img src="https://ci5.googleusercontent.com/proxy/7ea5JBOFcuUvrO4yGhsEwdan9MSZtwKz3Fm4_PHSxROMTWtu3gvRhX6Z9KQMVl2q0rmBQODa1a0tVG8QMCO6njjjnbk71Q=s0-d-e1-ft#https://asfaryacht.com/assets/images/email/apps.jpg" style="max-width:100%" class="CToWUd"></a>
-                                                </td>
-                                            </tr>
-                                        </tbody></table> 
-                                                                            <hr style="border:0;border:1px solid #ddd;height:0;margin:0;margin-bottom:15px;margin-top:15px">
     
                             <center>
                                 <a href="https://asfaryacht.com/booking/voucher/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09" style="color:#fff;text-decoration:none;padding:10px 20px;background-color:#ec6f23;display:inline-block;border-radius:5px" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/booking/voucher/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNH3mFw23QoQvQjsUcJ6N88ZJ8ChIQ">View voucher on website  </a> 
