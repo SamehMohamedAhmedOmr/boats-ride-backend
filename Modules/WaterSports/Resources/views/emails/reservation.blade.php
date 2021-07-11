@@ -23,10 +23,10 @@
             <p class="MsoNormal" style="margin-bottom:7.5pt"><img width="91" height="40" style="width:.95in;height:.4166in" id="m_716496154292371633_x0000_i1040" src="{{asset('reservation_emails')}}/main-logo.png" class="CToWUd"><u></u><u></u></p>
             </td>
             <td width="50%" style="width:50.0%;padding:.75pt .75pt .75pt .75pt">
-            <p class="MsoNormal" align="right" style="margin-bottom:7.5pt;text-align:right"><span style="font-size:10.5pt"><a href="https://asfaryacht.com/yacht-rental" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/yacht-rental&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNEyvFVRGqYk3lExExP2yzxX4MFUnw"><span style="color:#999999;text-decoration:none">YACHTS</span></a> &nbsp; | &nbsp;
-            <a href="https://asfaryacht.com/offers" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/offers&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNFQVx3a6F_qPLPbeE1xL-NsMe1OJQ"><span style="color:#999999;text-decoration:none">OFFERS</span></a> &nbsp; | &nbsp;
-            <a href="https://asfaryacht.com/services" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/services&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNGlZbfvzCXFPhTOttRy-37oEtzcpg"><span style="color:#999999;text-decoration:none">SERVICES</span></a> &nbsp; | &nbsp;
-            <a href="https://asfaryacht.com/contact-us" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/contact-us&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNEc_ZbmF20H74neS9p2Qf6Usacw0g"><span style="color:#999999;text-decoration:none">CONTACT</span></a> &nbsp; &nbsp;
+            <p class="MsoNormal" align="right" style="margin-bottom:7.5pt;text-align:right"><span style="font-size:10.5pt"><a href="{{env('WEB_URL')}}/yachts" target="_blank"><span style="color:#999999;text-decoration:none">YACHTS</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/offers" target="_blank"><span style="color:#999999;text-decoration:none">OFFERS</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/services" target="_blank"><span style="color:#999999;text-decoration:none">SERVICES</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/contact" target="_blank"><span style="color:#999999;text-decoration:none">CONTACT</span></a> &nbsp; &nbsp;
             <u></u><u></u></span></p>
             </td>
             </tr>

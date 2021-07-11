@@ -47,7 +47,11 @@ class TripController extends Controller
         return $this->service->show($id);
     }
 
-    
+
+    public function sendVoutcherEmail($booking_number){
+        return $this->service->sendVoutcherEmail($booking_number);
+    }
+
 
     /**
      * Update the specified resource in storage.

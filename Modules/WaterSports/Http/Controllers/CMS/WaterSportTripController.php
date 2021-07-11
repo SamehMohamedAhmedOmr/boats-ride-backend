@@ -47,6 +47,10 @@ class WaterSportTripController extends Controller
     }
 
     
+    public function sendVoutcherEmail($booking_number){
+        return $this->service->sendVoutcherEmail($booking_number);
+    }
+
 
     /**
      * Update the specified resource in storage.

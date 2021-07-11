@@ -21,6 +21,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::delete('yachts/delete/image/{id}', 'YachtController@deleteImage');
         Route::get('yachts/list-enums', 'YachtController@listEnums');
         Route::apiResource('yachts', 'YachtController');
+        Route::post('trips/send-voutcher-email/{booking_number}', 'TripController@sendVoutcherEmail');
         Route::get('trips/list-enums', 'TripController@listEnums');
         Route::apiResource('trips', 'TripController');
         Route::post('timeslots/yacht-trips', 'TimeSlotController@getTimeSlotsForYacht');
@@ -37,6 +38,8 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
 Route::namespace('Frontend')->group(function () {
     Route::apiResource('yachts',YachtController::class)->only(['index','show']);
+    Route::get('trips/voutcher-email-link/{booking_number}', 'TripController@getVoutcherEmailLink')->name('trips.voutcher.email.link');
+    Route::get('trips/voutcher-email/{booking_number}', 'TripController@showVoutcherEmail')->name('trips.voutcher.email.show');
 });
 
 

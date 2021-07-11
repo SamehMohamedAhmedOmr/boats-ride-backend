@@ -20,10 +20,10 @@
                                                 <td> <img src="{{asset('reservation_emails')}}/main-logo.png" height="40" style="height:40px" class="CToWUd"> </td>
                                                 <td width="50%" align="right" style="font-size:14px">
                                                     
-                                                    <a href="https://asfaryacht.com/yacht-rental" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/yacht-rental&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNHzr_CB85OtUwRk7ujaENtrNzNfeg">YACHTS</a>  &nbsp; | &nbsp;  
-                                                    <a href="https://asfaryacht.com/offers" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/offers&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNEVbKJFqOnFf56E2Y87XSIyx7_9EA">OFFERS</a>  &nbsp; |  &nbsp; 
-                                                    <a href="https://asfaryacht.com/services" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/services&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNEDEUm-PNyt15iEsHTxvjGrDT7LNg">SERVICES</a>  &nbsp; |  &nbsp; 
-                                                    <a href="https://asfaryacht.com/contact-us" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/contact-us&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNFb-Ze8hRJzlIRBUlUQDL0Xi8W_Og">CONTACT</a>   &nbsp;  &nbsp;
+                                                    <a href="{{env('WEB_URL')}}/yachts" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">YACHTS</a>  &nbsp; | &nbsp;  
+                                                    <a href="{{env('WEB_URL')}}/offers" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">OFFERS</a>  &nbsp; |  &nbsp; 
+                                                    <a href="{{env('WEB_URL')}}/services" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">SERVICES</a>  &nbsp; |  &nbsp; 
+                                                    <a href="{{env('WEB_URL')}}/contact" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">CONTACT</a>   &nbsp;  &nbsp;
                                                     
                                                 </td>
                                             </tr>
@@ -285,7 +285,7 @@
                                             <a href="https://twitter.com/AsfarYacht" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://twitter.com/AsfarYacht&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNE2A3zAjbcG3zPPVSsozhiPOEuUew"><img src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></a>
                                             <a href="https://www.instagram.com/asfaryachts/" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.instagram.com/asfaryachts/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNFm3Y3jPJvn09Q0CEycLJE_YCffdA"><img src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></a>
                                             <br><br>
-                                            Boats Ride © copyright 2008 -2018                                                    
+                                            Boats Ride © copyright 2021                                                   
                                         </p>
                                     </td>
                                 </tr>

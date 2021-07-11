@@ -87,15 +87,22 @@ class WaterSportTripService extends LaravelServiceClass
 
            $model = $this->repository->create($request->validated());
 
-            Session::put('locale', 'en');
-            $model->load(['waterSport.images']);
-            $this->email_service->email($model->email,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);
+            // Session::put('locale', 'en');
+            // $model->load(['waterSport.images']);
+            // $this->email_service->email($model->email,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);
             
             $model = new WaterSportTripResource($model);
             
             return ApiResponse::format(200, $model, 'Added!');
         });
 
+    }
+
+    
+    public function sendVoutcherEmail($booking_number){
+        Session::put('locale', 'en');
+        $model = $this->repository->get($booking_number,[],'booking_number',['waterSport.images']);
+        return $this->email_service->email($model->email,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);            
     }
 
     public function show($id)
