@@ -102,7 +102,8 @@ class WaterSportTripService extends LaravelServiceClass
     public function sendVoutcherEmail($booking_number){
         Session::put('locale', 'en');
         $model = $this->repository->get($booking_number,[],'booking_number',['waterSport.images']);
-        return $this->email_service->email($model->email,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);            
+        $send_to_emails = array_merge([$model->email] , env('RESERVATIONS_EMAIL') ? [env('RESERVATIONS_EMAIL')] : []);
+        return $this->email_service->email($send_to_emails,'WaterSports','emails.reservation','confirm reservation proccess',['trip'=>$model]);            
     }
 
     public function show($id)
