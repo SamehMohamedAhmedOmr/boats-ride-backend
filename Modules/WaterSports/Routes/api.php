@@ -31,6 +31,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
 Route::namespace('Frontend')->group(function () {
     Route::apiResource('water_sports',WaterSportController::class)->only(['index','show']);
+    Route::post('water_sports_requests', 'WaterSportRequestController@store');
     Route::get('water_sport_trips/voutcher-email-link/{booking_number}', 'WaterSportTripController@getVoutcherEmailLink')->name('waterSportTrips.voutcher.email.link');
     Route::get('water_sport_trips/voutcher-email/{booking_number}', 'WaterSportTripController@showVoutcherEmail')->name('waterSportTrips.voutcher.email.show');
 

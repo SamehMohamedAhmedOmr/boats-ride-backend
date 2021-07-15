@@ -38,6 +38,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
 
 Route::namespace('Frontend')->group(function () {
     Route::apiResource('yachts',YachtController::class)->only(['index','show']);
+    Route::post('yacht_requests', 'YachtRequestController@store');
     Route::get('trips/voutcher-email-link/{booking_number}', 'TripController@getVoutcherEmailLink')->name('trips.voutcher.email.link');
     Route::get('trips/voutcher-email/{booking_number}', 'TripController@showVoutcherEmail')->name('trips.voutcher.email.show');
 });
