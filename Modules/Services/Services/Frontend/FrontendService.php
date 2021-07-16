@@ -25,10 +25,10 @@ class FrontendService extends LaravelServiceClass
 
     public function index()
     {
-        list($model, $pagination) = parent::paginate($this->repository);
+        $model = parent::all($this->repository);
 
         $model = ServiceResource::collection($model);
-        return ApiResponse::format(200, $model, null, $pagination);
+        return ApiResponse::format(200, $model, null);
     }
 
    

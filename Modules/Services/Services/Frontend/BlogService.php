@@ -26,10 +26,10 @@ class BlogService extends LaravelServiceClass
 
     public function index()
     {
-        list($model, $pagination) = parent::paginate($this->repository,true,['is_active'=>true]);
+        $model= parent::all($this->repository,true,['is_active'=>true]);
 
         $model = BlogResource::collection($model);
-        return ApiResponse::format(200, $model, null, $pagination);
+        return ApiResponse::format(200, $model, null);
     }
 
    

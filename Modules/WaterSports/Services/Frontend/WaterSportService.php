@@ -31,10 +31,10 @@ class WaterSportService extends LaravelServiceClass
 
     public function index()
     {
-        list($model, $pagination) = parent::paginate($this->repository,false,['status'=>WaterSportStatusEnum::APPROVE]);
+        $model= parent::all($this->repository,false,['status'=>WaterSportStatusEnum::APPROVE]);
         $model->load(['images']);
         $model = WaterSportResource::collection($model);
-        return ApiResponse::format(200, $model, null, $pagination);
+        return ApiResponse::format(200, $model, null);
     }
 
    
