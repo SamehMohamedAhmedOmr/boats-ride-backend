@@ -28,10 +28,10 @@ class YachtService extends LaravelServiceClass
 
     public function index()
     {
-        list($model, $pagination) = parent::paginate($this->repository,false,['status'=>YachtStatusEnum::APPROVE]);
+        $model = parent::all($this->repository,false,['status'=>YachtStatusEnum::APPROVE]);
         $model->load(['services','images']);
         $model = YachtResource::collection($model);
-        return ApiResponse::format(200, $model, null, $pagination);
+        return ApiResponse::format(200, $model, null);
     }
 
    
