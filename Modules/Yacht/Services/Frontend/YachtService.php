@@ -37,13 +37,11 @@ class YachtService extends LaravelServiceClass
    
 
     public function show($id)
-    {
-        $local = Session::get('locale');
-        
-        $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $local));
+    {        
+        $model = $this->repository->getDataBySlug($id);
         
         $model->load(['services','images','seo']);
-
+        
         $model = YachtResource::make($model);
         return ApiResponse::format(200, $model);
     }

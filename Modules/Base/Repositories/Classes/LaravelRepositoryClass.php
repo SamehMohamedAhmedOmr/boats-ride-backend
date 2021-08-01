@@ -135,4 +135,12 @@ class LaravelRepositoryClass
         return get_class($this->model);
     }
 
+    public function getDataBySlug($slug,$conditions = [])
+    {
+        return $this->model->where(function($query)use($slug){
+            $query->where('slug->en',$slug)
+                  ->orWhere('slug->ar',$slug);
+        })->where($conditions)->firstOrFail();
+    }
+
 }

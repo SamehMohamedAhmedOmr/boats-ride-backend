@@ -43,9 +43,9 @@ class WaterSportService extends LaravelServiceClass
     {
         $local = Session::get('locale');
         
-        $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $local));
+        $model = $this->repository->getDataBySlug($id);
         
-        $model->load(['images']);
+        $model->load(['images','seo']);
 
         $model = WaterSportResource::make($model);
         return ApiResponse::format(200, $model);

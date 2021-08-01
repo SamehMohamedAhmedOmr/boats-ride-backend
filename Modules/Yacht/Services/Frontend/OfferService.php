@@ -26,7 +26,6 @@ class OfferService extends LaravelServiceClass
     public function index()
     {
         $model = parent::all($this->repository,true,['is_active'=>true]);
-
         $model = OfferResource::collection($model);
         return ApiResponse::format(200, $model, null);
     }
@@ -34,10 +33,8 @@ class OfferService extends LaravelServiceClass
    
 
     public function show($id)
-    {
-        $local = Session::get('locale');
-        
-        $model = $this->repository->get($id,[],'slug->'. ($local == 'all' ? 'en' : $locale));
+    {        
+        $model = $this->repository->getDataBySlug($id);
         $model->load('seo');
         $model = OfferResource::make($model);
         return ApiResponse::format(200, $model);
