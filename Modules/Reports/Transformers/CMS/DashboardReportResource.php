@@ -3,6 +3,7 @@
 namespace Modules\Reports\Transformers\CMS;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Frontend\Transformers\SettingsResource;
 
 class DashboardReportResource extends JsonResource
 {
@@ -20,7 +21,8 @@ class DashboardReportResource extends JsonResource
             'yacht_reserved_trips_count'=>$this['yacht_reserved_trips_count'],
             'yacht_confirmed_trips_count'=>$this['yacht_confirmed_trips_count'],
             'water_sport_reserved_trips'=>$this['water_sport_reserved_trips'],
-            'water_sport_confirmed_trips'=>$this['water_sport_confirmed_trips']
+            'water_sport_confirmed_trips'=>$this['water_sport_confirmed_trips'],
+            'settings'=>SettingsResource::make($this['settings'])
         ];
     }
 }
