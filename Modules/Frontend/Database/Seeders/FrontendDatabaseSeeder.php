@@ -3,6 +3,7 @@
 namespace Modules\Frontend\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Frontend\Database\Seeders\SettingsTableSeeder;
 
 class FrontendDatabaseSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class FrontendDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(SettingsTableSeeder::class);
     }
 }
