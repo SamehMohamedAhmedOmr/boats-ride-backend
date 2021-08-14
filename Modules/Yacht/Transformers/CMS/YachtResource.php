@@ -2,19 +2,19 @@
 
 namespace Modules\Yacht\Transformers\CMS;
 
+use Illuminate\Http\Request;
 use Modules\Yacht\Entities\YachtImage;
 use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Seo\Transformers\CMS\SeoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Services\Transformers\CMS\ServiceResource;
-use Modules\Yacht\Transformers\CMS\YachtImageResource;
 
 class YachtResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request
+     * @param  Request
      * @return array
      */
     public function toArray($request)
@@ -33,6 +33,7 @@ class YachtResource extends JsonResource
             'color'=>$this->color,
             'passenger_capacity'=>$this->passenger_capacity,
             'size'=>$this->size,
+            'beds'=>$this->beds,
             'no_of_captain'=>$this->no_of_captain,
             'crew_members'=>$this->crew_members,
             'corporate_company'=>$this->corporate_company,
