@@ -46,6 +46,8 @@ class YachtRequest extends FormRequest
             'yacht_special_price'=>'numeric',
             'minimum_hours_booking'=>'required|integer|min:1',
             'beds'=>'required|integer|min:1',
+            'year'=>'required|numeric|min:1800|digits:4',
+            'model'=>'required|string|max:255',
             'apply_vat'=>'required|boolean',
             'manufacturer'=>'required|string|max:255',
             'cruising_speed'=>'required|integer|min:1',
