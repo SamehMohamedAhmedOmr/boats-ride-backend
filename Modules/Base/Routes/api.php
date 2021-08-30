@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,7 +16,7 @@
 Route::namespace('CMS')->prefix('admins')->group(function () {
 
     Route::middleware('auth:api')->as('admins.')->group(function () {
-        Route::apiResource('countries', 'CountryController')
+        Route::apiResource('countries', 'CountryController');
     });
 
 });
