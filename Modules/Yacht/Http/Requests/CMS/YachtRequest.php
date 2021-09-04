@@ -79,6 +79,7 @@ class YachtRequest extends FormRequest
             'services.*'=>'required|integer|exists:services,id',
             'images'=>$this->isMethod('POST') ? 'required|array' : 'array',
             'images.*'=>'required|string',
+            'banner' => 'required|string'
         ];
     }
 

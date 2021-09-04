@@ -37,7 +37,7 @@ class YachtService extends LaravelServiceClass
         $this->repository = $repository;
         $this->mediaService = $mediaService;
         $this->seo_service = $seo_service;
-        $this->yacht_image_repository = $yacht_image; 
+        $this->yacht_image_repository = $yacht_image;
     }
 
     public function index()
@@ -48,7 +48,7 @@ class YachtService extends LaravelServiceClass
         } else {
             $model = parent::all($this->repository, true);
         }
-        
+
         $model->load('images');
         $model = YachtResource::collection($model);
         return ApiResponse::format(200, $model, null, $pagination);
@@ -65,20 +65,26 @@ class YachtService extends LaravelServiceClass
     {
         return DB::transaction(function () use ($request) {
 
-            $slug = ['en'=>Str::slug($request->input('name.en')) , 
-                             'ar'=>Str::slug($request->input('name.ar'),'-',null)];
+            $banner_image = ($request->banner) ? $this->mediaService->uploadImageBas64($request->banner, 'yacht') : null;
+            $banner_thumbnail = ($request->banner) ? $this->mediaService->generateThumbnailBas64($request->banner, 'yacht') : null;
 
-                             
-            $model =  $this->repository->create($request->validated() + ['slug'=>$slug]);
+            $slug = ['en' => Str::slug($request->input('name.en')),
+                'ar' => Str::slug($request->input('name.ar'), '-', null)];
 
-            $this->repository->attachServices($model,$request->services);
-            
-            if($request->images){
-                $this->handleUploadImages($request->images,$model->id);
+            $data = $request->validated();
+            $data['banner_image'] = $banner_image;
+            $data['banner_thumbnail'] = $banner_thumbnail;
+
+            $model = $this->repository->create($data + ['slug' => $slug]);
+
+            $this->repository->attachServices($model, $request->services);
+
+            if ($request->images) {
+                $this->handleUploadImages($request->images, $model->id);
             }
 
-            $this->seo_service->storeSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
-             
+            $this->seo_service->storeSeo($request->input('seo', []), $model->id, $this->repository->getModelPath());
+
             $model = YachtResource::make($model);
 
             return ApiResponse::format(201, $model, 'Added!');
@@ -89,73 +95,78 @@ class YachtService extends LaravelServiceClass
     public function show($id)
     {
         $model = $this->repository->get($id);
-        $model->load(['services','images','seo']);
+        $model->load(['services', 'images', 'seo']);
         $model = YachtResource::make($model);
         return ApiResponse::format(200, $model);
     }
 
     public function update($id, $request = null)
     {
-        return DB::transaction(function () use ($request,$id) {
+        return DB::transaction(function () use ($request, $id) {
 
-            $slug = ['en'=>Str::slug($request->input('name.en')) , 
-                             'ar'=>Str::slug($request->input('name.ar'),'-',null)];
+            $banner_image = ($request->banner) ? $this->mediaService->uploadImageBas64($request->banner, 'yacht') : null;
+            $banner_thumbnail = ($request->banner) ? $this->mediaService->generateThumbnailBas64($request->banner, 'yacht') : null;
 
-                             
-            $model =  $this->repository->update($id, $request->validated() + ['slug'=>$slug]);
+            $slug = ['en' => Str::slug($request->input('name.en')),
+                'ar' => Str::slug($request->input('name.ar'), '-', null)];
 
-            $this->repository->syncServices($model,$request->services);
-            
-            if($request->images){
-                $this->handleUploadImages($request->images,$model->id);
+
+            $data = $request->validated();
+            $data['banner_image'] = $banner_image;
+            $data['banner_thumbnail'] = $banner_thumbnail;
+
+            $model = $this->repository->update($id, $data + ['slug' => $slug]);
+
+            $this->repository->syncServices($model, $request->services);
+
+            if ($request->images) {
+                $this->handleUploadImages($request->images, $model->id);
             }
 
-            $this->seo_service->updateSeo($request->input('seo',[]),$model->id,$this->repository->getModelPath());
-             
+            $this->seo_service->updateSeo($request->input('seo', []), $model->id, $this->repository->getModelPath());
+
             $model = YachtResource::make($model);
 
             return ApiResponse::format(200, $model, 'updated!');
         });
 
-        
+
     }
 
     public function delete($id)
     {
-        $this->seo_service->deleteSeo($id,$this->repository->getModelPath());
+        $this->seo_service->deleteSeo($id, $this->repository->getModelPath());
         $model = $this->repository->delete($id);
         return ApiResponse::format(200, $model, 'Deleted!');
     }
 
     protected function removeImageFromStorage($old_model)
     {
-        if(\Storage::disk('public')->exists($old_model->image))
-        {
-            $this->mediaService->deleteImage('public/'.$old_model->image);
+        if (\Storage::disk('public')->exists($old_model->image)) {
+            $this->mediaService->deleteImage('public/' . $old_model->image);
         }
 
-        if(\Storage::disk('public')->exists($old_model->thumbnail))
-        {
-            $this->mediaService->deleteImage('public/'.$old_model->thumbnail);
+        if (\Storage::disk('public')->exists($old_model->thumbnail)) {
+            $this->mediaService->deleteImage('public/' . $old_model->thumbnail);
         }
     }
 
-    protected function handleUploadImages(array $images,$id)
+    protected function handleUploadImages(array $images, $id)
     {
         $prepared_data = [];
 
-        foreach($images as $image){
-            
+        foreach ($images as $image) {
+
             $base64_image = ($image) ? $this->mediaService->uploadImageBas64($image, 'yacht') : null;
             $thumbnail = ($image) ? $this->mediaService->generateThumbnailBas64($image, 'yacht') : null;
-            $prepared_data[] = ['image'=>$base64_image,'thumbnail'=>$thumbnail,'yacht_id'=>$id];
+            $prepared_data[] = ['image' => $base64_image, 'thumbnail' => $thumbnail, 'yacht_id' => $id];
         }
-       
+
         $this->yacht_image_repository->insertMultiImages($prepared_data);
     }
 
     public function deleteImage($id)
-    {  
+    {
         $image = $this->yacht_image_repository->get($id);
         $this->removeImageFromStorage($image);
         $this->yacht_image_repository->delete($id);
@@ -177,13 +188,13 @@ class YachtService extends LaravelServiceClass
         return EngineTypeEnum::translatedValues();
     }
 
-    
+
     public function listFuelTypes()
     {
         return FuelTypeEnum::translatedValues();
     }
 
-    
+
     public function listHullTypes()
     {
         return HullTypeEnum::translatedValues();
@@ -192,12 +203,12 @@ class YachtService extends LaravelServiceClass
     public function listEnums()
     {
         $enums = new YachtEnumsResource(
-                                    $this->listYachtTypes(),
-                                    $this->listYachtStatus(),
-                                    $this->listFuelTypes(),
-                                    $this->listHullTypes(),
-                                    $this->listEngineTypes()
-                                );
-        return ApiResponse::format(200, $enums, 'query successfully !');                                
+            $this->listYachtTypes(),
+            $this->listYachtStatus(),
+            $this->listFuelTypes(),
+            $this->listHullTypes(),
+            $this->listEngineTypes()
+        );
+        return ApiResponse::format(200, $enums, 'query successfully !');
     }
 }

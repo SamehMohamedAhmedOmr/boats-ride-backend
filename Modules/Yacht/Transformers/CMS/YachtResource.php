@@ -72,7 +72,9 @@ class YachtResource extends JsonResource
             'fishing_equipment'=>(bool)$this->fishing_equipment,
             'images'=> YachtImageResource::collection($this->whenLoaded('images')),
             'services'=> ServiceResource::collection($this->whenLoaded('services')),
-            'seo'=>new SeoResource($this->whenLoaded('seo'))
+            'seo'=>new SeoResource($this->whenLoaded('seo')),
+            'banner_image'=>$this->banner_image_url,
+            'banner_thumbnail'=>$this->banner_thumbnail_url
         ];
     }
 }
