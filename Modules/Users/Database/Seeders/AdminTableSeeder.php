@@ -28,7 +28,9 @@ class AdminTableSeeder extends Seeder
         ]);
 
         $role = Role::where('key', 'SUPER_ROLE')->first();
-        $user->roles()->detach();
-        $user->roles()->attach($role->id);
+        if ($role){
+            $user->roles()->detach();
+            $user->roles()->attach($role->id);
+        }
     }
 }
