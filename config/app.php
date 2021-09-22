@@ -247,4 +247,7 @@ return [
 
     ],
 
+    'send_email'=>'reservation@boatsride.com',
+    'send_email_pass'=>'BoatsRide0@2021'
+
 ];

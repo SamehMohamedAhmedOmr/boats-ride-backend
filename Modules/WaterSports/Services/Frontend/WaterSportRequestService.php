@@ -28,8 +28,14 @@ class WaterSportRequestService extends LaravelServiceClass
     public function store($request = null)
     {
         Session::put('locale', 'en');
+        $this->setSendEmailConfigs();
         $model = $this->repository->create($request->validated(),'waterSport');
         return $this->email_service->email(env('REQUESTS_EMAIL'),'watersports','emails.water_sport_request','new water sport request',['request'=>$model]);
+    }
+
+    private function setSendEmailConfigs(){
+        config(['mail.mailers.smtp.username' => env('SEND_REQUESTS_EMAIL'), 
+                'mail.mailers.smtp.password' => env('SEND_REQUESTS_EMAIL_PASS')]);
     }
 
 }

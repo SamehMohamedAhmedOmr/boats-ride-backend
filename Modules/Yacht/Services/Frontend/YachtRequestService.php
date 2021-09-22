@@ -27,8 +27,14 @@ class YachtRequestService extends LaravelServiceClass
     public function store($request = null)
     {
         Session::put('locale', 'en');
+        $this->setSendEmailConfigs();
         $model = $this->repository->create($request->validated(),'yacht');
         return $this->email_service->email(env('REQUESTS_EMAIL'),'Yacht','emails.yacht_request','new yacht request',['request'=>$model]);
+    }
+
+    private function setSendEmailConfigs(){
+        config(['mail.mailers.smtp.username' => env('SEND_REQUESTS_EMAIL'), 
+                'mail.mailers.smtp.password' => env('SEND_REQUESTS_EMAIL_PASS')]);
     }
 
 }

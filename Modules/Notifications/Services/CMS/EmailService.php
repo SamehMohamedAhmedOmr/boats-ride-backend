@@ -17,8 +17,8 @@ class EmailService extends LaravelServiceClass
             Mail::to($to)->send($mailable);
             return ApiResponse::format(200, 'Your E-mail has been sent successfully.');
         } catch (\Exception $exception){
-            // dd($exception->getMessage());
-            return ApiResponse::format(400, 'something went wrong during send email');
+             dd($exception->getMessage());
+            //return ApiResponse::format(400, 'something went wrong during send email');
         }
     }
 }
