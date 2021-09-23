@@ -26,6 +26,8 @@ class YachtRepository extends LaravelRepositoryClass
     {
         $query = $this->filtering($search_keys);
 
+        $query->orderBy('size','ASC');
+
         return $query->where($conditions)->get();
     }
 
