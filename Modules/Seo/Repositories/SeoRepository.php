@@ -26,4 +26,8 @@ class SeoRepository extends LaravelRepositoryClass
         
         return $query;
     }
+
+    public function getByUrl($url,$relations = []){
+        return $this->model->with($relations)->where('url',$url)->first();
+    }
 }

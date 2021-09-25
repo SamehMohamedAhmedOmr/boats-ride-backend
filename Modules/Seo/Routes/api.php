@@ -23,3 +23,10 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
     });
 });
 
+
+Route::namespace('Frontend')->group(function () {
+
+    Route::get('seo/{id}', 'SeoController@show');
+    
+});
+
