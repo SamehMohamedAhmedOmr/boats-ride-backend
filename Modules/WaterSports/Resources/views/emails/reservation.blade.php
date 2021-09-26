@@ -23,10 +23,10 @@
             <p class="MsoNormal" style="margin-bottom:7.5pt"><img width="91" height="40" style="width:.95in;height:.4166in" id="m_716496154292371633_x0000_i1040" src="{{asset('reservation_emails')}}/main-logo.png" class="CToWUd"><u></u><u></u></p>
             </td>
             <td width="50%" style="width:50.0%;padding:.75pt .75pt .75pt .75pt">
-            <p class="MsoNormal" align="right" style="margin-bottom:7.5pt;text-align:right"><span style="font-size:10.5pt"><a href="{{env('WEB_URL')}}/yachts" target="_blank"><span style="color:#999999;text-decoration:none">YACHTS</span></a> &nbsp; | &nbsp;
-            <a href="{{env('WEB_URL')}}/offers" target="_blank"><span style="color:#999999;text-decoration:none">OFFERS</span></a> &nbsp; | &nbsp;
-            <a href="{{env('WEB_URL')}}/services" target="_blank"><span style="color:#999999;text-decoration:none">SERVICES</span></a> &nbsp; | &nbsp;
-            <a href="{{env('WEB_URL')}}/contact" target="_blank"><span style="color:#999999;text-decoration:none">CONTACT</span></a> &nbsp; &nbsp;
+            <p class="MsoNormal" align="right" style="margin-bottom:7.5pt;text-align:right"><span style="font-size:10.5pt"><a href="{{env('WEB_URL')}}/yachts" target="_blank"><span style="color:#C62127;text-decoration:none">YACHTS</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/offers" target="_blank"><span style="color:#C62127;text-decoration:none">OFFERS</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/services" target="_blank"><span style="color:#C62127;text-decoration:none">SERVICES</span></a> &nbsp; | &nbsp;
+            <a href="{{env('WEB_URL')}}/contact" target="_blank"><span style="color:#C62127;text-decoration:none">CONTACT</span></a> &nbsp; &nbsp;
             <u></u><u></u></span></p>
             </td>
             </tr>
@@ -36,7 +36,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:0.1in 0in 0.1in 0in">
+            <td style="background:#051137;padding:0.1in 0in 0.1in 0in">
             <h2 align="center" style="margin:0in;text-align:center"><span style="font-size:12.0pt;color:white">WATERSPORT BOOKING VOUCHER<u></u><u></u></span></h2>
             </td>
             </tr>
@@ -97,7 +97,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:7.5pt 11.25pt 7.5pt 11.25pt">
+            <td style="background:#051137;padding:7.5pt 11.25pt 7.5pt 11.25pt">
             <h2 style="margin:0in"><span style="font-size:12.0pt;color:white">CUSTOMER DETAILS<u></u><u></u></span></h2>
             </td>
             </tr>
@@ -134,7 +134,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:7.5pt 11.25pt 7.5pt 11.25pt">
+            <td style="background:#051137;padding:7.5pt 11.25pt 7.5pt 11.25pt">
             <h2 style="margin:0in"><span style="font-size:12.0pt;color:white">BOOKING DETAILS<u></u><u></u></span></h2>
             </td>
             </tr>
@@ -165,7 +165,7 @@
             </td>
             <td style="padding:4.2pt 4.2pt 4.2pt 4.2pt">
             <p class="MsoNormal">{{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('D')}}, {{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('d-m-Y')}}  <br>
-            <span style="color:white;background:#11cce9">{{$render_data['trip']->start_hour}} - {{$render_data['trip']->end_hour}}</span><u></u><u></u></p>
+            <span style="color:white;background:#051137">{{$render_data['trip']->start_hour}} - {{$render_data['trip']->end_hour}}</span><u></u><u></u></p>
             </td>
             <td style="padding:4.2pt 4.2pt 4.2pt 4.2pt">
             <p class="MsoNormal">{{$render_data['trip']->trip_duration}}h <u></u><u></u></p>
@@ -192,7 +192,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:7.5pt 11.25pt 7.5pt 11.25pt">
+            <td style="background:#051137;padding:7.5pt 11.25pt 7.5pt 11.25pt">
             <h2 style="margin:0in"><span style="font-size:12.0pt;color:white">MEET &amp; GREET POINT<u></u><u></u></span></h2>
             </td>
             </tr>
@@ -266,7 +266,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:7.5pt 11.25pt 7.5pt 11.25pt">
+            <td style="background:#051137;padding:7.5pt 11.25pt 7.5pt 11.25pt">
             <h2 style="margin:0in"><span style="font-size:12.0pt;color:white">IMPORTANT TIPS FOR YOUR TRIP!<u></u><u></u></span></h2>
             </td>
             </tr>
@@ -292,7 +292,7 @@
             <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%">
             <tbody>
             <tr>
-            <td style="background:#11cce9;padding:7.5pt 11.25pt 7.5pt 11.25pt">
+            <td style="background:#051137;padding:7.5pt 11.25pt 7.5pt 11.25pt">
             <h2 style="margin:0in"><span style="font-size:12.0pt;color:white">CANCELLATION POLICY<u></u><u></u></span></h2>
             </td>
             </tr>

@@ -20,10 +20,10 @@
                                                 <td> <img src="{{asset('reservation_emails')}}/main-logo.png" height="40" style="height:40px" class="CToWUd"> </td>
                                                 <td width="50%" align="right" style="font-size:14px">
                                                     
-                                                    <a href="{{env('WEB_URL')}}/yachts" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">YACHTS</a>  &nbsp; | &nbsp;  
-                                                    <a href="{{env('WEB_URL')}}/offers" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">OFFERS</a>  &nbsp; |  &nbsp; 
-                                                    <a href="{{env('WEB_URL')}}/services" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">SERVICES</a>  &nbsp; |  &nbsp; 
-                                                    <a href="{{env('WEB_URL')}}/contact" style="color:#999;text-decoration:none" rel="noreferrer" target="_blank">CONTACT</a>   &nbsp;  &nbsp;
+                                                    <a href="{{env('WEB_URL')}}/yachts" style="color:#C62127;text-decoration:none" rel="noreferrer" target="_blank">YACHTS</a>  &nbsp; | &nbsp;  
+                                                    <a href="{{env('WEB_URL')}}/offers" style="color:#C62127;text-decoration:none" rel="noreferrer" target="_blank">OFFERS</a>  &nbsp; |  &nbsp; 
+                                                    <a href="{{env('WEB_URL')}}/services" style="color:#C62127;text-decoration:none" rel="noreferrer" target="_blank">SERVICES</a>  &nbsp; |  &nbsp; 
+                                                    <a href="{{env('WEB_URL')}}/contact" style="color:#C62127;text-decoration:none" rel="noreferrer" target="_blank">CONTACT</a>   &nbsp;  &nbsp;
                                                     
                                                 </td>
                                             </tr>
@@ -32,7 +32,7 @@
                                         
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0"> 		
                                             <tbody><tr>
-                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                <td bgcolor="#11CCE9" style="padding:10px 15px; background-color: #051137;">
                                                     <h2 style="color:#fff;text-align:center;font-size:16px;margin:0;padding:0">YACHT BOOKING VOUCHER</h2>
                                                 </td>
                                             </tr>	
@@ -88,7 +88,7 @@
                                         
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:10px"> 		
                                             <tbody><tr>
-                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                <td bgcolor="#11CCE9" style="padding:10px 15px; background-color: #051137;">
                                                     <h2 style="color:#fff;font-size:16px;margin:0;padding:0">CUSTOMER DETAILS</h2>
                                                 </td>
                                             </tr>	
@@ -113,7 +113,7 @@
                                         <br>
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:10px"> 		
                                             <tbody><tr>
-                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                <td bgcolor="#11CCE9" style="padding:10px 15px; background-color: #051137;">
                                                     <h2 style="color:#fff;font-size:16px;margin:0;padding:0"> BOOKING DETAILS</h2>
                                                 </td>
                                             </tr>	
@@ -130,8 +130,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>{{$render_data['trip']->yacht->name}}</td>
-                                                    <td>{{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('D')}}, {{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('d-m-Y')}} <br> <span style="background-color:#11cce9;border-radius:4px;color:#fff;padding:2px 7px">{{$render_data['trip']->start_hour}}</span></td>
-                                                    <td>{{ \Carbon\Carbon::parse($render_data['trip']->end_date)->format('D')}}, {{\Carbon\Carbon::parse($render_data['trip']->end_date)->format('d-m-Y')}} <br> <span style="background-color:#11cce9;border-radius:4px;color:#fff;padding:2px 7px">{{$render_data['trip']->end_hour}}</span></td>
+                                                    <td>{{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('D')}}, {{\Carbon\Carbon::parse($render_data['trip']->start_date)->format('d-m-Y')}} <br> <span style="background-color:#051137;border-radius:4px;color:#fff;padding:2px 7px">{{$render_data['trip']->start_hour}}</span></td>
+                                                    <td>{{ \Carbon\Carbon::parse($render_data['trip']->end_date)->format('D')}}, {{\Carbon\Carbon::parse($render_data['trip']->end_date)->format('d-m-Y')}} <br> <span style="background-color:#051137;border-radius:4px;color:#fff;padding:2px 7px">{{$render_data['trip']->end_hour}}</span></td>
                                                     <td> {{$render_data['trip']->trip_duration}}h </td>
                                                     <td>Upto {{$render_data['trip']->yacht->number_of_people}} only</td>
                                                     <td width="100"> <strong>AED {{(double) $render_data['trip']->total_price}}</strong> </td>
@@ -152,7 +152,7 @@
                                                         
                                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:10px"> 		
                                                             <tbody><tr>
-                                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                                <td bgcolor="#051137" style="padding:10px 15px">
                                                                     <h2 style="color:#fff;font-size:16px;margin:0;padding:0">MEET &amp; GREET POINT</h2>
                                                                 </td>
                                                             </tr>	
@@ -213,7 +213,7 @@
                                         
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:10px"> 		
                                             <tbody><tr>
-                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                <td bgcolor="#11CCE9" style="padding:10px 15px; background-color: #051137;">
                                                     <h2 style="color:#fff;font-size:16px;margin:0;padding:0">IMPORTANT TIPS FOR YOUR TRIP!</h2>
                                                 </td>
                                             </tr>	
@@ -239,7 +239,7 @@
                                                                             
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:10px"> 		
                                             <tbody><tr>
-                                                <td bgcolor="#11CCE9" style="padding:10px 15px">
+                                                <td bgcolor="#11CCE9" style="padding:10px 15px; background-color: #051137;">
                                                     <h2 style="color:#fff;font-size:16px;margin:0;padding:0">CANCELLATION POLICY</h2>
                                                 </td>
                                             </tr>	
