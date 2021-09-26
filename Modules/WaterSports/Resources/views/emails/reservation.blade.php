@@ -334,8 +334,8 @@
             <tr>
             <td style="padding:9.0pt 9.0pt 9.0pt 9.0pt">
             <p align="center" style="text-align:center"><span style="font-size:10.0pt;color:#999999"><img border="0" width="136" height="60" style="width:1.4166in;height:.625in" id="m_716496154292371633_x0000_i1035" src="{{asset('reservation_emails')}}/main-logo.png" class="CToWUd"></span><span style="font-size:10.0pt;color:#999999"><br>
-            We would like to hear from you. For any questions, suggestions or comments please contact us at: Customer Service Team - Email:
-            <a href="mailto:support@asfaryacht.com" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7.
+            {{-- We would like to hear from you. For any questions, suggestions or comments please contact us at: Customer Service Team - Email:
+            <a href="mailto:support@asfaryacht.com" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7. --}}
             <br>
             <br>
             </span><a href="https://www.facebook.com/" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1034" src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></span></a><a href="https://twitter.com/AsfarYacht" target="_blank"><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1033" src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></span></a><a href="https://www.instagram.com/" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1032" src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></span></a><span style="font-size:10.0pt;color:#999999"><br>

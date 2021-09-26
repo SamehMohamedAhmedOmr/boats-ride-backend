@@ -44,9 +44,9 @@ class CreateYachtsTable extends Migration
             $table->unsignedInteger('max_speed');
             $table->unsignedInteger('horse_Power');
             $table->unsignedInteger('length');
-            $table->enum('fuel_type',FuelTypeEnum::values());
-            $table->enum('hull_type',HullTypeEnum::values());
-            $table->enum('engine_type',EngineTypeEnum::values());
+            $table->enum('fuel_type',FuelTypeEnum::values())->nullable();
+            $table->enum('hull_type',HullTypeEnum::values())->nullable();
+            $table->enum('engine_type',EngineTypeEnum::values())->nullable();
             $table->unsignedInteger('beam');
             $table->boolean('water_slider')->default(0);
             $table->boolean('safety_equipment')->default(0);

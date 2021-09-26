@@ -278,8 +278,8 @@
                                     <td>
                                         <p align="center" style="color:#999;font-size:13px;padding:0 30px">
                                             <img src="{{asset('reservation_emails')}}/main-logo.png" height="60" class="CToWUd"> <br> 
-                                            We would like to hear from you. For any questions, suggestions or comments please contact us at:
-                                            Customer Service Team - Email: <a href="mailto:support@asfaryacht.com" rel="noreferrer" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7.
+                                            {{-- We would like to hear from you. For any questions, suggestions or comments please contact us at:
+                                            Customer Service Team - Email: <a href="mailto:support@asfaryacht.com" rel="noreferrer" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7. --}}
                                             <br><br>
                                             <a href="https://www.facebook.com/asfaryachtcharter/" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/asfaryachtcharter/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNGK9FS3PVPCg8xhyjCgwigdotg0sQ"><img src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></a>
                                             <a href="https://twitter.com/AsfarYacht" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://twitter.com/AsfarYacht&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNE2A3zAjbcG3zPPVSsozhiPOEuUew"><img src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></a>
