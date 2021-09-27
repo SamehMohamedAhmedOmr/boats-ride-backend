@@ -24,7 +24,7 @@ class CreateYachtsTable extends Migration
             $table->json('what_expect_description');
             $table->json('what_is_included');
             $table->json('facilities');
-            $table->json('slug')->unique();
+            $table->json('slug');
             $table->enum('type',YachtTypeEnum::values());
             $table->enum('status',YachtStatusEnum::values());
             $table->string('code');

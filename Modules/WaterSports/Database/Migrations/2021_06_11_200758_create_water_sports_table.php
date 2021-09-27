@@ -20,7 +20,7 @@ class CreateWaterSportsTable extends Migration
             $table->json('what_to_expect_description');
             $table->json('water_sport_description');
             $table->json('routes');
-            $table->json('slug')->unique();
+            $table->json('slug');
             $table->enum('status',WaterSportStatusEnum::values());
             $table->string('code');
             $table->string('color');
