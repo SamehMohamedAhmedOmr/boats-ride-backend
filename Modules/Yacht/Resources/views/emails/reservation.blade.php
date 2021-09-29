@@ -192,7 +192,7 @@
                                                     </tbody></table>                                                
                                                     <table border="1" bgcolor="#eee" width="100%" cellpadding="7" cellspacing="0" align="left" style="margin-bottom:15px">
                                                         <tbody><tr> 
-                                                            <td> <b style="color:green">Total Amount Paid:</b> <b style="color:green">AED 0.00</b></td>
+                                                            <td> <b style="color:green">Total Amount Paid:</b> <b style="color:green">AED {{(double) $render_data['trip']->paid_amount}}</b></td>
                                                                                                                                                                             <td> <b style="color:red">Pending Balance:</b> <b style="color:red">AED {{(double)$render_data['trip']->total_price}}</b></td>
                                                                                                                 </tr>
                                                     </tbody></table>
@@ -200,7 +200,9 @@
     
                                                                                                     <br>
                                                     <p style="color:#113f6d;font-weight:bold">To confirm Your Booking, Make Payment <br> (minimum AED {{(double) $render_data['trip']->minimum_Advance_Payment}} from total amount)</p>
-                                                    <p><a href="https://asfaryacht.com/booking-payment/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09" style="color:#fff;text-decoration:none;padding:10px 20px;background-color:#ec6f23;display:inline-block;border-radius:5px" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/booking-payment/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNHgzpUb1YesBVp4-JzI3zpPvzcPWQ">Make Payment and confirm</a></p>
+                                                    <p>
+                                                        {{-- <a href="https://asfaryacht.com/booking-payment/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09" style="color:#fff;text-decoration:none;padding:10px 20px;background-color:#ec6f23;display:inline-block;border-radius:5px" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/booking-payment/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09&amp;source=gmail&amp;ust=1625562291482000&amp;usg=AFQjCNHgzpUb1YesBVp4-JzI3zpPvzcPWQ">Make Payment and confirm</a> --}}
+                                                    </p>
                                                       
                                                     <br>
     
@@ -258,7 +260,7 @@
                                                             <li>Cancellation within 24 Hours from trip time: You will be charged 100% of trip cost. </li>
                                                         </ul>
                                                     </div>
-                                                    <small style="font-size:10px">We may cancel your reservation due to the event beyond our control such as bad weather ( No Sailing Permit), mechanical failure, coast guard restrictions, and enforcement of new laws. Asfar Yacht will provide alternatives within the charter budget or Full Refund will be processed.</small></td>
+                                                    <small style="font-size:10px">We may cancel your reservation due to the event beyond our control such as bad weather ( No Sailing Permit), mechanical failure, coast guard restrictions, and enforcement of new laws. boats ride will provide alternatives within the charter budget or Full Refund will be processed.</small></td>
     
                                             </tr>
                                         </tbody></table>
@@ -266,7 +268,7 @@
                                         <hr style="border:0;border:1px solid #ddd;height:0;margin:0;margin-bottom:15px;margin-top:30px">
     
                             <center>
-                                <a href="https://asfaryacht.com/booking/voucher/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09" style="color:#fff;text-decoration:none;padding:10px 20px;background-color:#ec6f23;display:inline-block;border-radius:5px" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/booking/voucher/UVVaVU1qUlpNREl5TVVaWk5qUk5Wdz09&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNH3mFw23QoQvQjsUcJ6N88ZJ8ChIQ">View voucher on website  </a> 
+                                <a href="{{env('WEB_URL')}}/yachts/voucher/{{$render_data['trip']->booking_number}}" style="color:#fff;text-decoration:none;padding:10px 20px;background-color:#ec6f23;display:inline-block;border-radius:5px" rel="noreferrer" target="_blank">View voucher on website  </a> 
                             </center>
     
                             <hr style="border:0;border:1px solid #ddd;height:0;margin:0;margin-bottom:15px;margin-top:15px">
@@ -281,9 +283,9 @@
                                             {{-- We would like to hear from you. For any questions, suggestions or comments please contact us at:
                                             Customer Service Team - Email: <a href="mailto:support@asfaryacht.com" rel="noreferrer" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7. --}}
                                             <br><br>
-                                            <a href="https://www.facebook.com/asfaryachtcharter/" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/asfaryachtcharter/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNGK9FS3PVPCg8xhyjCgwigdotg0sQ"><img src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></a>
-                                            <a href="https://twitter.com/AsfarYacht" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://twitter.com/AsfarYacht&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNE2A3zAjbcG3zPPVSsozhiPOEuUew"><img src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></a>
-                                            <a href="https://www.instagram.com/asfaryachts/" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.instagram.com/asfaryachts/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNFm3Y3jPJvn09Q0CEycLJE_YCffdA"><img src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></a>
+                                            <a href="https://www.facebook.com/boatsride" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/asfaryachtcharter/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNGK9FS3PVPCg8xhyjCgwigdotg0sQ"><img src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></a>
+                                            <a href="https://www.instagram.com/boats_ride" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://twitter.com/AsfarYacht&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNE2A3zAjbcG3zPPVSsozhiPOEuUew"><img src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></a>
+                                            <a href="https://twitter.com/ride_boats" rel="noreferrer" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.instagram.com/asfaryachts/&amp;source=gmail&amp;ust=1625562291483000&amp;usg=AFQjCNFm3Y3jPJvn09Q0CEycLJE_YCffdA"><img src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></a>
                                             <br><br>
                                             Boats Ride © copyright 2021                                                   
                                         </p>

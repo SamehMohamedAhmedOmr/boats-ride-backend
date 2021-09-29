@@ -48,6 +48,7 @@ class TripResource extends JsonResource
             'address' => $this->address,
             'booking_number' => $this->booking_number,
             'total_price' => (double) $this->total_price,
+            'paid_amount' => (double) $this->paid_amount,
             'country' => $this->whenLoaded('country', function () {
                 return CountryResource::make($this->country);
             }),

@@ -246,7 +246,7 @@
             <tr>
             <td style="border:inset #ec6f23 1.0pt;padding:4.2pt 4.2pt 4.2pt 4.2pt">
             <p class="MsoNormal"><b><span style="color:green">Total Amount Paid:</span></b> <b>
-            <span style="color:green">AED 0.00</span></b><u></u><u></u></p>
+            <span style="color:green">AED {{(double) $render_data['trip']->paid_amount}}</span></b><u></u><u></u></p>
             </td>
             <td style="border:inset #ec6f23 1.0pt;padding:4.2pt 4.2pt 4.2pt 4.2pt">
             <p class="MsoNormal"><b><span style="color:red">Pending Balance:</span></b> <b><span style="color:red">AED {{$render_data['trip']->total_price}}</span></b><u></u><u></u></p>
@@ -257,7 +257,10 @@
             <p class="MsoNormal"><u></u>&nbsp;<u></u></p>
             <p><b><span style="color:#113f6d">To confirm Your Booking, Make Payment <br>
             (minimum AED 0.00 from total amount)<u></u><u></u></span></b></p>
-            <p><a href="https://asfaryacht.com/water-sport/booking-payment/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/water-sport/booking-payment/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNFmJd8GQO06WjyWUPhUmGwY5jCr5w"><span style="color:white;background:#ec6f23;text-decoration:none">Make Payment and confirm</span></a><u></u><u></u></p>
+            <p>
+                {{-- <a href="https://asfaryacht.com/water-sport/booking-payment/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/water-sport/booking-payment/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNFmJd8GQO06WjyWUPhUmGwY5jCr5w"><span style="color:white;background:#ec6f23;text-decoration:none">Make Payment and confirm</span></a> --}}
+                <u></u><u></u>
+            </p>
             </td>
             </tr>
             </tbody>
@@ -313,7 +316,7 @@
             Cancellation within 24 Hours from trip time: You will be charged 100% of trip cost.
             <u></u><u></u></li></ul>
             </div>
-            <p class="MsoNormal"><span style="font-size:7.5pt">We may cancel your reservation due to the event beyond our control such as bad weather ( No Sailing Permit), mechanical failure, coast guard restrictions, and enforcement of new laws. Asfar Yacht will provide
+            <p class="MsoNormal"><span style="font-size:7.5pt">We may cancel your reservation due to the event beyond our control such as bad weather ( No Sailing Permit), mechanical failure, coast guard restrictions, and enforcement of new laws. boats ride Yacht will provide
              alternatives within the charter budget or Full Refund will be processed.</span><u></u><u></u></p>
             </td>
             </tr>
@@ -324,7 +327,7 @@
             </div>
            
             <p class="MsoNormal" align="center" style="margin-right:0in;margin-bottom:11.25pt;margin-left:0in;text-align:center">
-            <a href="https://asfaryacht.com/water-sport/booking/voucher/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://asfaryacht.com/water-sport/booking/voucher/UVVaVU1EZFhNRGN5TVRGR05rdFBTQT09&amp;source=gmail&amp;ust=1626004508572000&amp;usg=AFQjCNF_qNyhYOCvLQINElhH-rKKUwisiQ"><span style="color:white;background:#ec6f23;text-decoration:none">View voucher on website
+            <a href="{{env('WEB_URL')}}/water-sports/voucher/{{$render_data['trip']->booking_number}}" target="_blank"><span style="color:white;background:#ec6f23;text-decoration:none">View voucher on website
             </span></a><u></u><u></u></p>
             <div class="MsoNormal" align="center" style="margin-right:0in;margin-bottom:11.25pt;margin-left:0in;text-align:center">
             <hr size="0" width="100%" align="center">
@@ -338,7 +341,7 @@
             <a href="mailto:support@asfaryacht.com" target="_blank">support@asfaryacht.com</a> or call us within the UAE at 800 ASFAR(27327) or internationally at +971 4 2555143 our team is available 24/7. --}}
             <br>
             <br>
-            </span><a href="https://www.facebook.com/" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1034" src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></span></a><a href="https://twitter.com/AsfarYacht" target="_blank"><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1033" src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></span></a><a href="https://www.instagram.com/" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1032" src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></span></a><span style="font-size:10.0pt;color:#999999"><br>
+            </span><a href="https://www.facebook.com/boatsride" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1034" src="{{asset('reservation_emails')}}/fb.png" class="CToWUd"></span></a><a href="https://twitter.com/ride_boats" target="_blank"><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1033" src="{{asset('reservation_emails')}}/twiter.png" class="CToWUd"></span></a><a href="https://www.instagram.com/boats_ride" target="_blank" ><span style="font-size:10.0pt;text-decoration:none"><img border="0" width="24" height="24" style="width:.25in;height:.25in" id="m_716496154292371633_x0000_i1032" src="{{asset('reservation_emails')}}/insta.png" class="CToWUd"></span></a><span style="font-size:10.0pt;color:#999999"><br>
             <br>
             Boats Ride LLC © copyright 2021 <u></u><u></u></span></p>
             </td>
