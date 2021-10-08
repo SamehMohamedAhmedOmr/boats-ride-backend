@@ -38,7 +38,8 @@ class YachtRequestService extends LaravelServiceClass
             'mail.mailers.smtp.password' => env('SEND_REQUESTS_EMAIL_PASS'),
             'mail.mailers.smtp.host' => env('SEND_REQUESTS_EMAIL_HOST'),
             'mail.mailers.smtp.port' => env('SEND_REQUESTS_EMAIL_PORT'),
-            'mail.mailers.smtp.encryption' => env('SEND_REQUESTS_EMAIL_ENCRYPTION')
+            'mail.mailers.smtp.encryption' => env('SEND_REQUESTS_EMAIL_ENCRYPTION'),
+            'mail.from.address' => env('SEND_REQUESTS_FROM_ADDRESS')
         ]);
     }
 
