@@ -44,7 +44,8 @@ class WaterSportRequest extends FormRequest
             'location.en'=>'required|string|max:65000',
             'location.ar'=>'required|string|max:65000',
             'images'=>$this->isMethod('POST') ? 'required|array' : 'array',
-            'images.*'=>'required|string'
+            'images.*'=>'required|string',
+            'banner' => $this->isMethod('POST') ? 'required|string' : 'string'
         ] + SeoHelper::validationRules();
     }
 

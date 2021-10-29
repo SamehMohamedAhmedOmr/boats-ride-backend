@@ -32,5 +32,13 @@ class WaterSport extends Model
         return $this->morphOne(Seo::class, 'seoable');
     }
 
+    public function getBannerImageUrlAttribute(){
+        return MediaService::constructUrl($this->banner_image);
+    }
+
+    public function getBannerThumbnailUrlAttribute(){
+        return MediaService::constructUrl($this->banner_thumbnail);
+    }
+
 
 }

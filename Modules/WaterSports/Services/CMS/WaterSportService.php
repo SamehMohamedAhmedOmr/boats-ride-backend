@@ -60,11 +60,18 @@ class WaterSportService extends LaravelServiceClass
     {
         return DB::transaction(function () use ($request) {
 
+            $banner_image = ($request->banner) ? $this->mediaService->uploadImageBas64($request->banner, 'waterSports') : null;
+            $banner_thumbnail = ($request->banner) ? $this->mediaService->generateThumbnailBas64($request->banner, 'waterSports') : null;
+
+            $data = $request->validated();
+            $data['banner_image'] = $banner_image;
+            $data['banner_thumbnail'] = $banner_thumbnail;
+
             $slug = ['en'=>Str::slug($request->input('name.en')) , 
                              'ar'=>Str::slug($request->input('name.ar'),'-',null)];
 
                              
-            $model =  $this->repository->create($request->validated() + ['slug'=>$slug]);
+            $model =  $this->repository->create($data + ['slug'=>$slug]);
             
             if($request->images){
                 $this->handleUploadImages($request->images,$model->id);
@@ -91,11 +98,20 @@ class WaterSportService extends LaravelServiceClass
     {
         return DB::transaction(function () use ($request,$id) {
 
+            $data = $request->validated();
+
+            if($request->banner){
+                $banner_image =  $this->mediaService->uploadImageBas64($request->banner, 'waterSports');
+                $banner_thumbnail =  $this->mediaService->generateThumbnailBas64($request->banner, 'waterSports');        
+                $data['banner_image'] = $banner_image;
+                $data['banner_thumbnail'] = $banner_thumbnail;    
+            }
+
             $slug = ['en'=>Str::slug($request->input('name.en')) , 
                              'ar'=>Str::slug($request->input('name.ar'),'-',null)];
 
                              
-            $model =  $this->repository->update($id, $request->validated() + ['slug'=>$slug]);
+            $model =  $this->repository->update($id, $data + ['slug'=>$slug]);
 
             
             if($request->images){

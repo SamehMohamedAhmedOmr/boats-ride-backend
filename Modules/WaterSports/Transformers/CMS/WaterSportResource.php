@@ -36,7 +36,9 @@ class WaterSportResource extends JsonResource
             'apply_vat'=>$this->apply_vat,
             'location'=>$this->location,
             'images'=>WaterSportImageResource::collection($this->whenLoaded('images')),
-            'seo'=>new SeoResource($this->whenLoaded('seo'))
+            'seo'=>new SeoResource($this->whenLoaded('seo')),
+            'banner_image'=>$this->banner_image_url,
+            'banner_thumbnail'=>$this->banner_thumbnail_url
         ];
     }
 }
