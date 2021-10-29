@@ -6,6 +6,7 @@ use Modules\Seo\Entities\Seo;
 use Modules\Base\traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Base\Services\Classes\MediaService;
 use Modules\WaterSports\Entities\WaterSportImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
