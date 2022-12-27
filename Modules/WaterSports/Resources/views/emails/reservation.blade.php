@@ -249,7 +249,7 @@
             <span style="color:green">AED {{(double) $render_data['trip']->paid_amount}}</span></b><u></u><u></u></p>
             </td>
             <td style="border:inset #ec6f23 1.0pt;padding:4.2pt 4.2pt 4.2pt 4.2pt">
-            <p class="MsoNormal"><b><span style="color:red">Pending Balance:</span></b> <b><span style="color:red">AED {{$render_data['trip']->total_price}}</span></b><u></u><u></u></p>
+            <p class="MsoNormal"><b><span style="color:red">Pending Balance:</span></b> <b><span style="color:red">AED {{(double)$render_data['trip']->total_price - ((double) $render_data['trip']->paid_amount)}}</span></b><u></u><u></u></p>
             </td>
             </tr>
             </tbody>

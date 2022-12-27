@@ -172,11 +172,12 @@
                                                     
                                                     <table border="1" cellpadding="7" cellspacing="0" width="100%" style="margin-bottom:15px;border:1px solid #cedfe4">
                                                         
-                                                        <tbody><tr>
+                                                        <tbody>
+														{{--	<tr>
                                                             <td> Sub Total: </td>
                                                             <td> AED {{ ((double) $render_data['trip']->total_price) - ((double)$render_data['trip']->discount)}} </td>
                                                         </tr>
-                                                                                                                                                                
+                                                            --}}                                                                                                    
                                                         <tr>
                                                             <td> DISCOUNT: </td>
                                                             <td>AED {{(double) $render_data['trip']->discount}}</td>
@@ -193,7 +194,7 @@
                                                     <table border="1" bgcolor="#eee" width="100%" cellpadding="7" cellspacing="0" align="left" style="margin-bottom:15px">
                                                         <tbody><tr> 
                                                             <td> <b style="color:green">Total Amount Paid:</b> <b style="color:green">AED {{(double) $render_data['trip']->paid_amount}}</b></td>
-                                                                                                                                                                            <td> <b style="color:red">Pending Balance:</b> <b style="color:red">AED {{(double)$render_data['trip']->total_price}}</b></td>
+                                                                                                                                                                            <td> <b style="color:red">Pending Balance:</b> <b style="color:red">AED {{(double)$render_data['trip']->total_price - ((double) $render_data['trip']->paid_amount)}}</b></td>
                                                                                                                 </tr>
                                                     </tbody></table>
                                                     

@@ -21,14 +21,14 @@ class TimeSlotsTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
 
         $start_date = Carbon::parse('00:00');
-        $end_date = Carbon::parse('23:30');
+        $end_date = Carbon::parse('23:45');
 
         while($start_date->lte($end_date))
         {
             TimeSlot::updateOrCreate(['time'=>$start_date->format('H:i')],[
                 'label'=>$start_date->format('g:i A')
             ]);
-            $start_date->addMinutes(30);
+            $start_date->addMinutes(15);
         }
     }
     
