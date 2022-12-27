@@ -34,7 +34,7 @@ class TripEnumsResource extends JsonResource
         return [
             'trip_status'=> EnumResource::collection($this->trip_status),
             'payment_methods'=>EnumResource::collection($this->payment_methods),
-            'time_slots'=>TimeSlotResource::collection($this->time_slots),
+            'time_slots'=>TimeSlotResource::collection($this->time_slots->sortBy('time')),
             'countries'=>CountryResource::collection($this->countries),
         ];
     }
