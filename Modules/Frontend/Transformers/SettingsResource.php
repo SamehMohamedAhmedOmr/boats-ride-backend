@@ -15,7 +15,8 @@ class SettingsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'enable_coming_soon'=>(bool) $this->enable_coming_soon
+            'enable_coming_soon'=>(bool) $this->enable_coming_soon,
+            'whatsapp_number'=> $this->whatsapp_number,
         ];
     }
 }
