@@ -14,8 +14,8 @@ class SettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'enable_coming_soon'=>'required|boolean',
-            'whatsapp_number' => 'required|numeric'
+            'enable_coming_soon'=>'sometimes|required|boolean',
+            'whatsapp_number' => 'sometimes|required|numeric'
         ];
     }
 
