@@ -11,8 +11,8 @@ class TripExportService extends ExportServiceClass
         $excel_data = [];
         foreach ($objects as $object) {
             $excel_data [] = [
-                'name' => $object['id'],
-                'email' => $object['name'],
+                'name' => $object['name'],
+                'email' => $object['email'],
                 'phone' => $object['phone'],
             ];
         }
