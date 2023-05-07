@@ -23,7 +23,7 @@ Route::namespace('CMS')->prefix('admins')->group(function () {
         Route::apiResource('yachts', 'YachtController');
         Route::post('trips/send-voutcher-email/{booking_number}', 'TripController@sendVoutcherEmail');
         Route::get('trips/list-enums', 'TripController@listEnums');
-        Route::get('trips/export', 'TripController@export');
+        Route::get('trips/sheet/export', 'TripController@export');
         Route::apiResource('trips', 'TripController');
         Route::post('timeslots/yacht-trips', 'TimeSlotController@getTimeSlotsForYacht');
         Route::post('timeslots/water_sport_trips', 'TimeSlotController@getTimeSlotsForWaterSport');
