@@ -83,4 +83,9 @@ class TripController extends Controller
     {
         return $this->service->listEnums();
     }
+
+    public function export(PaginationRequest $request)
+    {
+        return $this->service->export();
+    }
 }

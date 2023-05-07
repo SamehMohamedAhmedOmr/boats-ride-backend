@@ -37,8 +37,8 @@ class ExcelExportHelper
     public function export($directory ,  $export_class){
         try {
             $date = Carbon::now();
-            $project_slug = UtilitiesHelper::projectSlug();
-            $pre_path = 'public/Excel/'.$project_slug.'/'.$directory .'/';
+            //$project_slug = UtilitiesHelper::projectSlug();
+            $pre_path = 'public/Excel/'.$directory .'/';
             //$path = $directory . 'Reports-'.$date->toDateString().'-'.$date->hour.'h-'.$date->minute.'m';
             $path = $directory . '-Reports';
             $extension = '.xlsx';
@@ -46,7 +46,7 @@ class ExcelExportHelper
 
             Excel::store($export_class, $full_path);
 
-            $file_path = getFilePath('Excel/'.$project_slug.'/'.$directory .'/', $path . $extension);
+            $file_path = getFilePath('Excel/'.$directory, $path . $extension);
 
             return ExportResource::make(['path' => $file_path]);
         }

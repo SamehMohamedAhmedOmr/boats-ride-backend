@@ -8,11 +8,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Modules\Yacht\Enums\FuelTypeEnum;
 use Modules\Yacht\Enums\HullTypeEnum;
+use Modules\Yacht\Exports\TripExport;
 use Modules\Yacht\Enums\YachtTypeEnum;
 use Illuminate\Support\Facades\Session;
 use Modules\Yacht\Enums\EngineTypeEnum;
 use Modules\Yacht\Enums\TripStatusEnum;
 use Modules\Yacht\Enums\YachtStatusEnum;
+use Modules\Base\Facade\ExcelExportHelper;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Yacht\Enums\PaymentMethodsEnum;
 use Modules\Users\Repositories\UserRepository;
@@ -199,5 +201,12 @@ class TripService extends LaravelServiceClass
          $this->user_repo->update($client->user_id,$data);
 
         });   
+    }
+
+    public function export()
+    {
+        $file_path = ExcelExportHelper::export('Vouchers', \App::make(TripExport::class));
+
+        return ApiResponse::format(200, $file_path);
     }
 }
