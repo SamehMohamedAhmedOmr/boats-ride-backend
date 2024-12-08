@@ -32,7 +32,7 @@ class WaterSportService extends LaravelServiceClass
 
     public function index()
     {
-        $model = Cache::remember('water_sports', 30 * 24 * 60, function () {
+        $model = Cache::remember('water_sports', 30 * 24 * 60 * 60, function () {
             $model= parent::all($this->repository,false,['status'=>WaterSportStatusEnum::APPROVE]);
             $model->load(['images']);
             $model = WaterSportResource::collection($model);

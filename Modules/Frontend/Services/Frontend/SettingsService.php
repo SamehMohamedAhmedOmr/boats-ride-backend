@@ -22,7 +22,7 @@ class SettingsService extends LaravelServiceClass
 
     public function show($request = null){
 
-        $settings = Cache::remember('settings', 30 * 24 * 60, function () {
+        $settings = Cache::remember('settings', 30 * 24 * 60 * 60, function () {
             $settings = $this->repository->getFirst();
  
             if($settings){

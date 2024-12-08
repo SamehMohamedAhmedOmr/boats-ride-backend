@@ -29,7 +29,7 @@ class YachtService extends LaravelServiceClass
 
     public function index()
     {
-        $model = Cache::remember('yachts', 30 * 24 * 60, function () {
+        $model = Cache::remember('yachts', 30 * 24 * 60 * 60, function () {
             $model = parent::all($this->repository,false,['status'=>YachtStatusEnum::APPROVE]);
             $model->load(['services','images']);
             $model = YachtResource::collection($model);

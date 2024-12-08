@@ -23,7 +23,7 @@ class SeoService extends LaravelServiceClass
 
     public function show($id)
     {
-        $model = Cache::remember('seo_' . $id, 24 * 60, function () use($id) {
+        $model = Cache::remember('seo_' . $id, 24 * 60 * 60, function () use($id) {
             $model = $this->seo_repo->getByUrl($id);
             $model = SeoResource::make($model);
 
