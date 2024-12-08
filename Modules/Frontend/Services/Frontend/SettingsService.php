@@ -5,6 +5,7 @@ namespace Modules\Frontend\Services\Frontend;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Frontend\Transformers\SettingsResource;
 use Modules\Frontend\Repositories\SettingsRepository;
@@ -21,11 +22,15 @@ class SettingsService extends LaravelServiceClass
 
     public function show($request = null){
 
-        $settings = $this->repository->getFirst();
+        $settings = Cache::remember('settings', 30 * 24 * 60, function () {
+            $settings = $this->repository->getFirst();
  
-        if($settings){
-            $settings = SettingsResource::make($settings);
-        }
+            if($settings){
+                $settings = SettingsResource::make($settings);
+            }
+
+            return $settings;
+        });
 
         return ApiResponse::format(200, $settings); 
       }

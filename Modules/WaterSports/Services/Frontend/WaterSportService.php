@@ -5,6 +5,7 @@ namespace Modules\WaterSports\Services\Frontend;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Base\ResponseShape\ApiResponse;
@@ -31,9 +32,14 @@ class WaterSportService extends LaravelServiceClass
 
     public function index()
     {
-        $model= parent::all($this->repository,false,['status'=>WaterSportStatusEnum::APPROVE]);
-        $model->load(['images']);
-        $model = WaterSportResource::collection($model);
+        $model = Cache::remember('water_sports', 30 * 24 * 60, function () {
+            $model= parent::all($this->repository,false,['status'=>WaterSportStatusEnum::APPROVE]);
+            $model->load(['images']);
+            $model = WaterSportResource::collection($model);
+            
+            return $model;
+        });
+        
         return ApiResponse::format(200, $model, null);
     }
 

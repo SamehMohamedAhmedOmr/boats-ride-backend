@@ -5,6 +5,7 @@ namespace Modules\Yacht\Services\Frontend;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Modules\Yacht\Enums\YachtStatusEnum;
 use Modules\Base\ResponseShape\ApiResponse;
@@ -28,9 +29,14 @@ class YachtService extends LaravelServiceClass
 
     public function index()
     {
-        $model = parent::all($this->repository,false,['status'=>YachtStatusEnum::APPROVE]);
-        $model->load(['services','images']);
-        $model = YachtResource::collection($model);
+        $model = Cache::remember('yachts', 30 * 24 * 60, function () {
+            $model = parent::all($this->repository,false,['status'=>YachtStatusEnum::APPROVE]);
+            $model->load(['services','images']);
+            $model = YachtResource::collection($model);
+
+            return $model;
+        });
+
         return ApiResponse::format(200, $model, null);
     }
 

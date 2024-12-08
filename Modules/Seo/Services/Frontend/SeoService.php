@@ -3,6 +3,7 @@
 namespace Modules\Seo\Services\Frontend;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Seo\Repositories\SeoRepository;
@@ -22,8 +23,13 @@ class SeoService extends LaravelServiceClass
 
     public function show($id)
     {
-        $model = $this->seo_repo->getByUrl($id);
-        $model = SeoResource::make($model);
+        $model = Cache::remember('seo_' . $id, 24 * 60, function () use($id) {
+            $model = $this->seo_repo->getByUrl($id);
+            $model = SeoResource::make($model);
+
+            return $model;
+        });
+        
         return ApiResponse::format(200, $model);
     }
 
