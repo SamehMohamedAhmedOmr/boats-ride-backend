@@ -64,4 +64,13 @@ class YachtRepository extends LaravelRepositoryClass
         $model->services()->attach($data);
     }
 
+    public function getLatestForHome($has_active = false, $conditions = [], $with = [] , $limit = 10){
+        $query = $this->model;
+        $query = $conditions != [] ? $query->where($conditions) : $query;
+        $query = $has_active ? $query->where('is_active', 1) : $query;
+        $query = $with != [] ? $query->with($with) : $query;
+        $query = $query->orderBy('size','ASC')->take($limit);
+        return $query->get();
+    }
+
 }

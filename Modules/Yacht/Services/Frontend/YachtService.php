@@ -40,7 +40,26 @@ class YachtService extends LaravelServiceClass
         return ApiResponse::format(200, $model, null);
     }
 
-   
+
+    public function latestForHome()
+    {
+        $model = Cache::remember('latest-yachts-for-home', 30 * 24 * 60 * 60, function () {
+            $model = $this->repository->getLatestForHome(
+                false, 
+                ['status'=>YachtStatusEnum::APPROVE], 
+                ['services','images'], 
+                10
+            );
+            
+            $model->load(['services','images']);
+            $model = YachtResource::collection($model);
+
+            return $model;
+        });
+
+        return ApiResponse::format(200, $model, null);
+    }
+
 
     public function show($id)
     {        

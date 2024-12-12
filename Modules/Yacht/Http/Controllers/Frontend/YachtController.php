@@ -34,6 +34,11 @@ class YachtController extends Controller
     public function show($id)
     {
         return $this->service->show($id);
-    }    
+    }   
+    
+    public function latestForHome()
+    {
+        return $this->service->latestForHome();
+    }   
 
 }
