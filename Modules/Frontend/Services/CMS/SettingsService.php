@@ -5,6 +5,7 @@ namespace Modules\Frontend\Services\CMS;
 use Throwable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Frontend\Transformers\SettingsResource;
 use Modules\Frontend\Repositories\SettingsRepository;
@@ -23,6 +24,7 @@ class SettingsService extends LaravelServiceClass
 
         return  DB::transaction(function () use($request){
               $settings = $this->repository->updateOrCreate([],$request->validated());
+              Cache::forget('settings');
               return ApiResponse::format(200, SettingsResource::make($settings));
           });
          

@@ -17,6 +17,7 @@ class SettingsResource extends JsonResource
         return [
             'enable_coming_soon'=>(bool) $this->enable_coming_soon,
             'whatsapp_number'=> $this->whatsapp_number,
+            'home_section' => $this->home_section,
         ];
     }
 }
