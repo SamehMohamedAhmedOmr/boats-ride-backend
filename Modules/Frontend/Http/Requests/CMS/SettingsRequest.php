@@ -16,6 +16,7 @@ class SettingsRequest extends FormRequest
         return [
             'enable_coming_soon'=>'sometimes|required|boolean',
             'whatsapp_number' => 'sometimes|required|numeric',
+            'contact_number' => 'sometimes|required|numeric',
             'home_section' => 'nullable|string',
         ];
     }
