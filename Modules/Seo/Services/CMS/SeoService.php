@@ -3,6 +3,7 @@
 namespace Modules\Seo\Services\CMS;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Base\ResponseShape\ApiResponse;
 use Modules\Seo\Repositories\SeoRepository;
@@ -65,6 +66,7 @@ class SeoService extends LaravelServiceClass
     {
 
         $model = $this->seo_repo->update($id, $request->validated());
+        Cache::forget('seo_' . $id);
 
         $model = SeoResource::make($model);
         return ApiResponse::format(200, $model, 'updated!');
